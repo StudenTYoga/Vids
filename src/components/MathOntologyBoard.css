@@ -201,6 +201,118 @@
   max-width: 220px;
 }
 
+.side-panel__ph-text em {
+  color: #64748b;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ─── Course list ────────────────────────────────────────────── */
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.course-list__hint {
+  font-size: 11.5px;
+  color: #475569;
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+.course-list__hint strong {
+  color: #94a3b8;
+}
+
+/* ─── Course card ────────────────────────────────────────────── */
+.course-card {
+  display: block;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.course-card:hover {
+  border-color: #3b82f6;
+  background: #0c1829;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
+}
+
+.course-card__top {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+}
+
+.course-card__lang {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #64748b;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 1px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.course-card__verified {
+  font-size: 9.5px;
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.course-card__title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.45;
+  margin-bottom: 7px;
+}
+
+.course-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.course-card__channel {
+  font-size: 11px;
+  color: #64748b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.course-card__duration {
+  font-size: 11px;
+  color: #475569;
+  white-space: nowrap;
+  font-family: ui-monospace, monospace;
+  flex-shrink: 0;
+}
+
+.course-card__timestamp {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid #1e293b;
+  font-size: 11px;
+  color: #60a5fa;
+  line-height: 1.4;
+}
+
+.course-card__timestamp strong {
+  color: #93c5fd;
+  font-family: ui-monospace, monospace;
+}
+
 /* ─── Meta concept nodes ─────────────────────────────────────── */
 .meta-node {
   background: #0f172a;

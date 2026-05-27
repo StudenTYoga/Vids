@@ -11,8 +11,16 @@ import ReactFlow, {
   useNodesState,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import ontologyData from '../../k12_math_ontology.json';
+import ontologyData  from '../../k12_math_ontology.json';
+import coursesIndex  from '../../courses/index.json';
 import './MathOntologyBoard.css';
+
+function fmtDuration(sec) {
+  if (sec == null) return '—';
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
 
 // ─── Colour palette per domain ────────────────────────────────
 const PALETTE = {
@@ -65,7 +73,7 @@ function getPrereqChain(startId, prereqMap) {
 }
 
 // ─── Context menu ─────────────────────────────────────────────
-function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onToggleUnderstood, onClose }) {
+function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onShowCourses, onToggleUnderstood, onClose }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -92,7 +100,7 @@ function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onTo
   const W   = window.innerWidth;
   const H   = window.innerHeight;
   const MXW = 220;
-  const MXH = 130;
+  const MXH = 170;
   const left = Math.min(menu.x, W - MXW - 8);
   const top  = Math.min(menu.y, H - MXH - 8);
 
@@ -105,6 +113,10 @@ function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onTo
       <button className="ctx-menu__item" onClick={onHighlightRelated}>
         <span className="ctx-menu__icon">↔️</span>
         Highlight related to
+      </button>
+      <button className="ctx-menu__item" onClick={onShowCourses}>
+        <span className="ctx-menu__icon">🎬</span>
+        Show related courses
       </button>
       <button
         className={`ctx-menu__item ${isUnderstood ? 'ctx-menu__item--active' : ''}`}
@@ -180,11 +192,44 @@ const NODE_TYPES = {
   concept: ConceptNode,
 };
 
+// ─── Course card ──────────────────────────────────────────────
+function CourseCard({ video, conceptId }) {
+  const entry = video.concept_path.find((cp) => cp.concept_id === conceptId);
+  const tSec  = entry?.time_sec ?? null;
+  const ytUrl = `https://www.youtube.com/watch?v=${video.video_id}${tSec ? `&t=${tSec}` : ''}`;
+
+  return (
+    <a href={ytUrl} target="_blank" rel="noopener noreferrer" className="course-card">
+      <div className="course-card__top">
+        <span className="course-card__lang">{video.language}</span>
+        {video.verified && <span className="course-card__verified">✓ verified</span>}
+      </div>
+      <div className="course-card__title">{video.title}</div>
+      <div className="course-card__meta">
+        <span className="course-card__channel">{video.channel}</span>
+        <span className="course-card__duration">{fmtDuration(video.duration_sec)}</span>
+      </div>
+      {tSec != null && (
+        <div className="course-card__timestamp">
+          📍 此概念出現於 <strong>{fmtDuration(tSec)}</strong>
+        </div>
+      )}
+    </a>
+  );
+}
+
 // ─── Side panel ───────────────────────────────────────────────
-function SidePanel({ open, onToggle }) {
+function SidePanel({ open, onToggle, selectedConcept }) {
+  const courses = useMemo(() => {
+    if (!selectedConcept) return [];
+    const ids = coursesIndex.concept_coverage[selectedConcept.id] ?? [];
+    return ids
+      .map((vid) => coursesIndex.videos.find((v) => v.video_id === vid))
+      .filter(Boolean);
+  }, [selectedConcept]);
+
   return (
     <aside className={`side-panel ${open ? 'side-panel--open' : ''}`}>
-      {/* Collapse / expand tab */}
       <button
         className="side-panel__toggle"
         onClick={onToggle}
@@ -193,20 +238,41 @@ function SidePanel({ open, onToggle }) {
         {open ? '›' : '‹'}
       </button>
 
-      {/* Scrollable content */}
       <div className="side-panel__inner">
         <header className="side-panel__head">
-          <span className="side-panel__title">Course Player</span>
+          <span className="side-panel__title">
+            {selectedConcept ? selectedConcept.label : 'Course Player'}
+          </span>
         </header>
 
         <div className="side-panel__body">
-          {/* ── placeholder – replace with real course content later ── */}
-          <div className="side-panel__placeholder">
-            <div className="side-panel__ph-icon">🎬</div>
-            <p className="side-panel__ph-text">
-              Right-click a concept node to open related courses here.
-            </p>
-          </div>
+          {!selectedConcept ? (
+            <div className="side-panel__placeholder">
+              <div className="side-panel__ph-icon">🎬</div>
+              <p className="side-panel__ph-text">
+                Right-click a concept node and choose<br />
+                <em>Show related courses</em>.
+              </p>
+            </div>
+          ) : courses.length === 0 ? (
+            <div className="side-panel__placeholder">
+              <div className="side-panel__ph-icon">🔍</div>
+              <p className="side-panel__ph-text">
+                No courses indexed for<br />
+                <strong>{selectedConcept.label}</strong> yet.
+              </p>
+            </div>
+          ) : (
+            <div className="course-list">
+              <p className="course-list__hint">
+                {courses.length} course{courses.length > 1 ? 's' : ''} covering{' '}
+                <strong>{selectedConcept.label}</strong>
+              </p>
+              {courses.map((video) => (
+                <CourseCard key={video.video_id} video={video} conceptId={selectedConcept.id} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </aside>
@@ -317,14 +383,22 @@ function buildGraph(data, showRelated, understoodSet, highlightedSet, hlMode = n
 
 // ─── Main component ───────────────────────────────────────────
 export default function MathOntologyBoard() {
-  const [showRelated,   setShowRelated]   = useState(false);
-  const [panelOpen,     setPanelOpen]     = useState(false);
-  const [menu,          setMenu]          = useState(null);            // { nodeId, x, y } | null
+  const [showRelated,     setShowRelated]     = useState(false);
+  const [panelOpen,       setPanelOpen]       = useState(false);
+  const [selectedConcept, setSelectedConcept] = useState(null); // { id, label }
+  const [menu,            setMenu]            = useState(null);            // { nodeId, x, y } | null
   const [highlighted,   setHighlighted]   = useState(() => new Set());
   const [hlMode,        setHlMode]        = useState(null);            // 'prereq' | 'related' | null
   const [understood,    setUnderstood]    = useState(loadUnderstood);  // Set<string>
 
   const savedViewport = useMemo(() => loadViewport(), []);
+
+  // conceptLabelMap: id → display name (for context menu handler)
+  const conceptLabelMap = useMemo(() => {
+    const map = {};
+    ontologyData.domains.forEach((d) => d.concepts.forEach((c) => { map[c.id] = c.name; }));
+    return map;
+  }, []);
 
   // prereqMap: conceptId → prerequisite IDs
   const prereqMap = useMemo(() => {
@@ -422,6 +496,13 @@ export default function MathOntologyBoard() {
     setMenu(null);
   }, [menu, relatedMap, understood, applyMeta]);
 
+  const handleShowCourses = useCallback(() => {
+    if (!menu) return;
+    setSelectedConcept({ id: menu.nodeId, label: conceptLabelMap[menu.nodeId] ?? menu.nodeId });
+    setPanelOpen(true);
+    setMenu(null);
+  }, [menu, conceptLabelMap]);
+
   const handleToggleUnderstood = useCallback(() => {
     if (!menu) return;
     const next = new Set(understood);
@@ -441,6 +522,7 @@ export default function MathOntologyBoard() {
         isUnderstood={menu ? understood.has(menu.nodeId) : false}
         onHighlight={handleHighlightPrereqs}
         onHighlightRelated={handleHighlightRelated}
+        onShowCourses={handleShowCourses}
         onToggleUnderstood={handleToggleUnderstood}
         onClose={closeMenu}
       />
@@ -495,7 +577,11 @@ export default function MathOntologyBoard() {
           />
         </ReactFlow>
 
-        <SidePanel open={panelOpen} onToggle={() => setPanelOpen((v) => !v)} />
+        <SidePanel
+          open={panelOpen}
+          onToggle={() => setPanelOpen((v) => !v)}
+          selectedConcept={selectedConcept}
+        />
       </div>
     </div>
   );
