@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -27,6 +27,92 @@ const PALETTE = {
   university_math:             '#4f46e5',
 };
 
+// ─── Viewport persistence ─────────────────────────────────────
+const VIEWPORT_KEY   = 'math-ontology-viewport';
+const UNDERSTOOD_KEY = 'math-ontology-understood';
+
+function loadViewport() {
+  try {
+    const raw = localStorage.getItem(VIEWPORT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+function saveViewport({ x, y, zoom }) {
+  try { localStorage.setItem(VIEWPORT_KEY, JSON.stringify({ x, y, zoom })); } catch {}
+}
+
+function loadUnderstood() {
+  try {
+    const raw = localStorage.getItem(UNDERSTOOD_KEY);
+    return raw ? new Set(JSON.parse(raw)) : new Set();
+  } catch { return new Set(); }
+}
+function saveUnderstood(set) {
+  try { localStorage.setItem(UNDERSTOOD_KEY, JSON.stringify([...set])); } catch {}
+}
+
+// ─── Prerequisite chain traversal (BFS upward) ───────────────
+function getPrereqChain(startId, prereqMap) {
+  const result = new Set();
+  const queue  = [...(prereqMap[startId] ?? [])];
+  while (queue.length) {
+    const id = queue.shift();
+    if (result.has(id)) continue;
+    result.add(id);
+    (prereqMap[id] ?? []).forEach((pid) => queue.push(pid));
+  }
+  return result; // ancestors only, startId excluded
+}
+
+// ─── Context menu ─────────────────────────────────────────────
+function ContextMenu({ menu, isUnderstood, onHighlight, onToggleUnderstood, onClose }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!menu) return;
+    const onKey   = (e) => { if (e.key === 'Escape') onClose(); };
+    // Delay adding click-outside listener so it doesn't fire on the
+    // same right-click that opened the menu
+    const t = setTimeout(() => {
+      const onClick = (e) => { if (ref.current && !ref.current.contains(e.target)) onClose(); };
+      window.addEventListener('click', onClick);
+      ref.current._cleanup = () => window.removeEventListener('click', onClick);
+    }, 0);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('keydown', onKey);
+      ref.current?._cleanup?.();
+    };
+  }, [menu, onClose]);
+
+  if (!menu) return null;
+
+  // Clamp so menu stays inside the viewport
+  const W   = window.innerWidth;
+  const H   = window.innerHeight;
+  const MXW = 220;
+  const MXH = 90;
+  const left = Math.min(menu.x, W - MXW - 8);
+  const top  = Math.min(menu.y, H - MXH - 8);
+
+  return (
+    <div ref={ref} className="ctx-menu" style={{ top, left }}>
+      <button className="ctx-menu__item" onClick={onHighlight}>
+        <span className="ctx-menu__icon">🔗</span>
+        Highlight prerequisites
+      </button>
+      <button
+        className={`ctx-menu__item ${isUnderstood ? 'ctx-menu__item--active' : ''}`}
+        onClick={onToggleUnderstood}
+      >
+        <span className="ctx-menu__icon">{isUnderstood ? '✅' : '⬜'}</span>
+        {isUnderstood ? 'Unmark as understood' : 'Mark as understood'}
+      </button>
+    </div>
+  );
+}
+
 // ─── Custom node components ───────────────────────────────────
 
 function MetaNode({ data }) {
@@ -50,10 +136,22 @@ function DomainNode({ data }) {
 
 function ConceptNode({ data }) {
   return (
-    <div className="concept-node" style={{ '--color': data.color }}>
+    <div
+      className={[
+        'concept-node',
+        data.isHighlighted ? 'concept-node--hl'         : '',
+        data.isUnderstood  ? 'concept-node--understood' : '',
+      ].filter(Boolean).join(' ')}
+      style={{ '--color': data.color }}
+    >
       <Handle type="target" position={Position.Left}   style={{ opacity: 0 }} />
       <Handle type="target" position={Position.Top}    style={{ opacity: 0 }} id="t-top" />
-      <div className="concept-node__name">{data.label}</div>
+
+      <div className="concept-node__name">
+        {data.label}
+        {data.isUnderstood && <span className="concept-node__badge">✓</span>}
+      </div>
+
       {data.formula && (
         <div className="concept-node__formula">{data.formula}</div>
       )}
@@ -64,6 +162,7 @@ function ConceptNode({ data }) {
           ))}
         </div>
       )}
+
       <Handle type="source" position={Position.Right}  style={{ opacity: 0 }} />
       <Handle type="source" position={Position.Bottom} style={{ opacity: 0 }} id="s-bottom" />
     </div>
@@ -83,10 +182,13 @@ const CONCEPT_GAP     = 130;
 const META_Y          = -330;
 
 // ─── Graph builder ────────────────────────────────────────────
-function buildGraph(data, showRelated) {
+function buildGraph(data, showRelated, understoodSet, highlightedSet) {
+  const uSet = understoodSet  ?? new Set();
+  const hSet = highlightedSet ?? new Set();
+
   const nodes = [];
   const edges = [];
-  const pos   = {};   // conceptId → { x, y }
+  const pos   = {};
 
   // Domain columns + concept nodes
   data.domains.forEach((domain, di) => {
@@ -94,12 +196,12 @@ function buildGraph(data, showRelated) {
     const color = PALETTE[domain.id] ?? '#64748b';
 
     nodes.push({
-      id:          `domain::${domain.id}`,
-      type:        'domain',
-      position:    { x: x - 6, y: 0 },
-      draggable:   false,
-      selectable:  false,
-      data:        { label: domain.name, color },
+      id:         `domain::${domain.id}`,
+      type:       'domain',
+      position:   { x: x - 6, y: 0 },
+      draggable:  false,
+      selectable: false,
+      data:       { label: domain.name, color },
     });
 
     domain.concepts.forEach((c, ci) => {
@@ -109,7 +211,14 @@ function buildGraph(data, showRelated) {
         id:       c.id,
         type:     'concept',
         position: { x, y },
-        data:     { label: c.name, formula: c.formula, apps: c.applications, color },
+        data: {
+          label:         c.name,
+          formula:       c.formula,
+          apps:          c.applications,
+          color,
+          isUnderstood:  uSet.has(c.id),
+          isHighlighted: hSet.has(c.id),
+        },
       });
     });
   });
@@ -128,7 +237,7 @@ function buildGraph(data, showRelated) {
     });
   });
 
-  // Prerequisite edges (solid arrows)
+  // Edges
   const known      = new Set(Object.keys(pos));
   const relEdgeIds = new Set();
 
@@ -146,7 +255,6 @@ function buildGraph(data, showRelated) {
         });
       });
 
-      // Related edges (dashed, deduped, opt-in)
       if (showRelated) {
         (c.related_to ?? []).forEach((rid) => {
           if (!known.has(rid) || rid === c.id) return;
@@ -168,52 +276,103 @@ function buildGraph(data, showRelated) {
   return { nodes, edges };
 }
 
-// ─── Viewport persistence ─────────────────────────────────────
-const VIEWPORT_KEY = 'math-ontology-viewport';
-
-function loadViewport() {
-  try {
-    const raw = localStorage.getItem(VIEWPORT_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    return null;
-  }
-}
-
-function saveViewport({ x, y, zoom }) {
-  try {
-    localStorage.setItem(VIEWPORT_KEY, JSON.stringify({ x, y, zoom }));
-  } catch {}
-}
-
 // ─── Main component ───────────────────────────────────────────
 export default function MathOntologyBoard() {
   const [showRelated, setShowRelated] = useState(false);
+  const [menu,        setMenu]        = useState(null);           // { nodeId, x, y } | null
+  const [highlighted, setHighlighted] = useState(() => new Set());
+  const [understood,  setUnderstood]  = useState(loadUnderstood); // Set<string>
 
-  const init = useMemo(() => buildGraph(ontologyData, false), []);
+  const savedViewport = useMemo(() => loadViewport(), []);
+
+  // prereqMap: conceptId → string[] of prerequisite IDs
+  const prereqMap = useMemo(() => {
+    const map = {};
+    ontologyData.domains.forEach((d) =>
+      d.concepts.forEach((c) => { map[c.id] = c.prerequisites ?? []; })
+    );
+    return map;
+  }, []);
+
+  // Initial nodes — bake in understood from localStorage so there's no flash
+  const init = useMemo(
+    () => buildGraph(ontologyData, false, loadUnderstood(), new Set()),
+    [], // intentionally run once
+  );
+
   const [nodes, setNodes, onNodesChange] = useNodesState(init.nodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(init.edges);
 
-  // Read once on mount; null means "no saved state → use fitView"
-  const savedViewport = useMemo(() => loadViewport(), []);
+  // Patch isHighlighted / isUnderstood into existing nodes without full rebuild
+  const applyMeta = useCallback((hlSet, undSet) => {
+    setNodes((nds) =>
+      nds.map((n) =>
+        n.type !== 'concept'
+          ? n
+          : { ...n, data: { ...n.data, isHighlighted: hlSet.has(n.id), isUnderstood: undSet.has(n.id) } }
+      )
+    );
+  }, [setNodes]);
 
-  const handleToggle = useCallback(
-    (e) => {
-      const checked = e.target.checked;
-      setShowRelated(checked);
-      const { nodes: n, edges: eg } = buildGraph(ontologyData, checked);
-      setNodes(n);
-      setEdges(eg);
-    },
-    [setNodes, setEdges],
-  );
+  // ── Toolbar toggle ──
+  const handleToggle = useCallback((e) => {
+    const checked = e.target.checked;
+    setShowRelated(checked);
+    const { nodes: n, edges: eg } = buildGraph(ontologyData, checked, understood, highlighted);
+    setNodes(n);
+    setEdges(eg);
+  }, [setNodes, setEdges, understood, highlighted]);
 
-  const handleMoveEnd = useCallback((_, viewport) => {
-    saveViewport(viewport);
+  // ── Viewport save ──
+  const handleMoveEnd = useCallback((_, viewport) => saveViewport(viewport), []);
+
+  // ── Context menu ──
+  const onNodeContextMenu = useCallback((e, node) => {
+    e.preventDefault();
+    if (node.type !== 'concept') return;
+    setMenu({ nodeId: node.id, x: e.clientX, y: e.clientY });
   }, []);
+
+  const closeMenu = useCallback(() => setMenu(null), []);
+
+  // Clicking the empty canvas clears the menu AND the highlight
+  const onPaneClick = useCallback(() => {
+    setMenu(null);
+    setHighlighted(new Set());
+    applyMeta(new Set(), understood);
+  }, [applyMeta, understood]);
+
+  const handleHighlightPrereqs = useCallback(() => {
+    if (!menu) return;
+    const chain = getPrereqChain(menu.nodeId, prereqMap);
+    chain.add(menu.nodeId); // include the selected node itself
+    setHighlighted(chain);
+    applyMeta(chain, understood);
+    setMenu(null);
+  }, [menu, prereqMap, understood, applyMeta]);
+
+  const handleToggleUnderstood = useCallback(() => {
+    if (!menu) return;
+    const next = new Set(understood);
+    if (next.has(menu.nodeId)) next.delete(menu.nodeId);
+    else                        next.add(menu.nodeId);
+    setUnderstood(next);
+    saveUnderstood(next);
+    applyMeta(highlighted, next);
+    setMenu(null);
+  }, [menu, understood, highlighted, applyMeta]);
 
   return (
     <div className="board-root">
+      {/* ── Context menu (rendered outside ReactFlow to avoid z-index issues) ── */}
+      <ContextMenu
+        menu={menu}
+        isUnderstood={menu ? understood.has(menu.nodeId) : false}
+        onHighlight={handleHighlightPrereqs}
+        onToggleUnderstood={handleToggleUnderstood}
+        onClose={closeMenu}
+      />
+
       {/* ── Toolbar ── */}
       <header className="toolbar">
         <span className="toolbar__title">K12 Math Ontology</span>
@@ -240,7 +399,8 @@ export default function MathOntologyBoard() {
         onEdgesChange={onEdgesChange}
         nodeTypes={NODE_TYPES}
         nodesConnectable={false}
-        // Restore saved position; fall back to fitView on first visit
+        onNodeContextMenu={onNodeContextMenu}
+        onPaneClick={onPaneClick}
         {...(savedViewport
           ? { defaultViewport: savedViewport }
           : { fitView: true, fitViewOptions: { padding: 0.1 } }
