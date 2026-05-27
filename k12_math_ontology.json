@@ -1,0 +1,648 @@
+{
+  "ontology_name": "K12 Math Ontology",
+  "version": "1.1",
+  "meta_concepts": [
+    {
+      "id": "quantity",
+      "name": "Quantity",
+      "description": "Mathematics as the study of measurable or countable quantities.",
+      "related_domains": [
+        "Physics",
+        "Economics",
+        "Measurement",
+        "Data Science"
+      ]
+    },
+    {
+      "id": "relation",
+      "name": "Relation",
+      "description": "Mathematics as the study of relationships between quantities.",
+      "related_domains": [
+        "Functions",
+        "Systems Thinking",
+        "Graphs",
+        "Modeling"
+      ]
+    },
+    {
+      "id": "transformation",
+      "name": "Transformation",
+      "description": "Mathematics as the study of change and transformation.",
+      "related_domains": [
+        "Animation",
+        "Physics",
+        "Computer Graphics",
+        "Calculus"
+      ]
+    },
+    {
+      "id": "structure",
+      "name": "Structure",
+      "description": "Mathematics as the study of patterns and systems.",
+      "related_domains": [
+        "Symmetry",
+        "AI",
+        "Music",
+        "Architecture"
+      ]
+    }
+  ],
+  "domains": [
+    {
+      "id": "pre_math",
+      "name": "Pre-Math Cognition",
+      "concepts": [
+        {
+          "id": "pattern_recognition",
+          "name": "Pattern Recognition",
+          "prerequisites": [],
+          "representations": [
+            "visual",
+            "musical",
+            "spatial"
+          ],
+          "applications": [
+            "music rhythm",
+            "art symmetry",
+            "coding patterns"
+          ],
+          "related_to": [
+            "sequence",
+            "symmetry",
+            "function"
+          ]
+        },
+        {
+          "id": "spatial_reasoning",
+          "name": "Spatial Reasoning",
+          "prerequisites": [],
+          "applications": [
+            "geometry",
+            "3D modeling",
+            "architecture"
+          ],
+          "related_to": [
+            "geometry",
+            "vectors",
+            "coordinate_system"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "name": "Number Systems",
+      "concepts": [
+        {
+          "id": "natural_numbers",
+          "name": "Natural Numbers",
+          "prerequisites": [
+            "pattern_recognition"
+          ],
+          "operations": [
+            "counting",
+            "ordering"
+          ],
+          "related_to": [
+            "integers",
+            "arithmetic"
+          ],
+          "applications": [
+            "counting objects"
+          ]
+        },
+        {
+          "id": "integers",
+          "name": "Integers",
+          "prerequisites": [
+            "natural_numbers"
+          ],
+          "operations": [
+            "addition",
+            "subtraction"
+          ],
+          "applications": [
+            "temperature",
+            "elevation",
+            "direction"
+          ],
+          "related_to": [
+            "number_line"
+          ]
+        },
+        {
+          "id": "fractions",
+          "name": "Fractions",
+          "prerequisites": [
+            "division",
+            "integers"
+          ],
+          "operations": [
+            "ratio",
+            "partitioning",
+            "scaling"
+          ],
+          "applications": [
+            "music rhythm",
+            "recipes",
+            "map scaling"
+          ],
+          "related_to": [
+            "ratio",
+            "probability",
+            "slope"
+          ]
+        },
+        {
+          "id": "decimals",
+          "name": "Decimals",
+          "prerequisites": [
+            "fractions"
+          ],
+          "applications": [
+            "measurement",
+            "money"
+          ],
+          "related_to": [
+            "place_value",
+            "real_numbers"
+          ]
+        },
+        {
+          "id": "real_numbers",
+          "name": "Real Numbers",
+          "prerequisites": [
+            "fractions",
+            "decimals"
+          ],
+          "applications": [
+            "measurement",
+            "physics"
+          ],
+          "related_to": [
+            "irrational_numbers",
+            "continuity"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arithmetic",
+      "name": "Arithmetic",
+      "concepts": [
+        {
+          "id": "addition",
+          "name": "Addition",
+          "prerequisites": [
+            "natural_numbers"
+          ],
+          "applications": [
+            "aggregation",
+            "vector addition"
+          ],
+          "related_to": [
+            "subtraction"
+          ]
+        },
+        {
+          "id": "multiplication",
+          "name": "Multiplication",
+          "prerequisites": [
+            "addition"
+          ],
+          "applications": [
+            "area",
+            "scaling",
+            "matrix operations"
+          ],
+          "related_to": [
+            "division",
+            "exponents"
+          ]
+        },
+        {
+          "id": "ratio",
+          "name": "Ratio",
+          "prerequisites": [
+            "fractions"
+          ],
+          "applications": [
+            "proportion",
+            "similarity",
+            "physics formulas"
+          ],
+          "related_to": [
+            "proportion",
+            "slope"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algebra",
+      "name": "Algebra",
+      "concepts": [
+        {
+          "id": "variables",
+          "name": "Variables",
+          "prerequisites": [
+            "arithmetic"
+          ],
+          "applications": [
+            "modeling",
+            "programming"
+          ],
+          "related_to": [
+            "equation",
+            "function"
+          ]
+        },
+        {
+          "id": "equations",
+          "name": "Equations",
+          "prerequisites": [
+            "variables"
+          ],
+          "applications": [
+            "physics laws",
+            "financial modeling"
+          ],
+          "related_to": [
+            "systems_of_equations",
+            "functions"
+          ]
+        },
+        {
+          "id": "linear_functions",
+          "name": "Linear Functions",
+          "prerequisites": [
+            "equations"
+          ],
+          "formula": "y = mx + b",
+          "applications": [
+            "constant speed motion",
+            "economics"
+          ],
+          "related_to": [
+            "slope",
+            "graphing"
+          ]
+        },
+        {
+          "id": "quadratic_functions",
+          "name": "Quadratic Functions",
+          "prerequisites": [
+            "linear_functions"
+          ],
+          "formula": "y = ax^2 + bx + c",
+          "applications": [
+            "projectile motion",
+            "optimization"
+          ],
+          "related_to": [
+            "parabola",
+            "calculus"
+          ]
+        },
+        {
+          "id": "exponential_functions",
+          "name": "Exponential Functions",
+          "prerequisites": [
+            "exponents"
+          ],
+          "applications": [
+            "population growth",
+            "radioactive decay"
+          ],
+          "related_to": [
+            "logarithms"
+          ]
+        },
+        {
+          "id": "geometric_series",
+          "name": "Geometric Series",
+          "prerequisites": [
+            "multiplication",
+            "exponential_functions",
+            "limits"
+          ],
+          "applications": [
+            "compound interest",
+            "infinite series convergence",
+            "signal attenuation"
+          ],
+          "related_to": [
+            "exponential_functions",
+            "limits",
+            "operator_algebra"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry",
+      "name": "Geometry",
+      "concepts": [
+        {
+          "id": "shapes",
+          "name": "Basic Shapes",
+          "prerequisites": [
+            "spatial_reasoning"
+          ],
+          "applications": [
+            "design",
+            "architecture"
+          ],
+          "related_to": [
+            "area",
+            "perimeter"
+          ]
+        },
+        {
+          "id": "triangles",
+          "name": "Triangles",
+          "prerequisites": [
+            "shapes"
+          ],
+          "applications": [
+            "engineering",
+            "truss structures"
+          ],
+          "related_to": [
+            "pythagorean_theorem",
+            "trigonometry"
+          ]
+        },
+        {
+          "id": "coordinate_geometry",
+          "name": "Coordinate Geometry",
+          "prerequisites": [
+            "shapes",
+            "equations"
+          ],
+          "applications": [
+            "computer graphics",
+            "navigation"
+          ],
+          "related_to": [
+            "vectors",
+            "graphing"
+          ]
+        },
+        {
+          "id": "transformations",
+          "name": "Geometric Transformations",
+          "prerequisites": [
+            "shapes"
+          ],
+          "applications": [
+            "animation",
+            "game engines"
+          ],
+          "related_to": [
+            "rotation",
+            "translation",
+            "scaling",
+            "symmetry"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry",
+      "concepts": [
+        {
+          "id": "sine",
+          "name": "Sine Function",
+          "prerequisites": [
+            "triangles"
+          ],
+          "applications": [
+            "waves",
+            "audio synthesis",
+            "signal processing"
+          ],
+          "related_to": [
+            "cosine",
+            "unit_circle"
+          ]
+        },
+        {
+          "id": "cosine",
+          "name": "Cosine Function",
+          "prerequisites": [
+            "triangles"
+          ],
+          "applications": [
+            "rotation",
+            "oscillation"
+          ],
+          "related_to": [
+            "sine",
+            "vectors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "statistics_probability",
+      "name": "Statistics and Probability",
+      "concepts": [
+        {
+          "id": "probability",
+          "name": "Probability",
+          "prerequisites": [
+            "fractions"
+          ],
+          "applications": [
+            "AI",
+            "risk analysis",
+            "games"
+          ],
+          "related_to": [
+            "statistics",
+            "bayesian_reasoning"
+          ]
+        },
+        {
+          "id": "mean",
+          "name": "Mean",
+          "prerequisites": [
+            "addition",
+            "division"
+          ],
+          "applications": [
+            "data analysis"
+          ],
+          "related_to": [
+            "median",
+            "variance"
+          ]
+        },
+        {
+          "id": "variance",
+          "name": "Variance",
+          "prerequisites": [
+            "mean"
+          ],
+          "applications": [
+            "machine learning",
+            "statistics"
+          ],
+          "related_to": [
+            "standard_deviation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "precalculus_calculus_bridge",
+      "name": "Precalculus and Calculus Bridge",
+      "concepts": [
+        {
+          "id": "limits",
+          "name": "Limits",
+          "prerequisites": [
+            "functions"
+          ],
+          "applications": [
+            "continuity",
+            "calculus"
+          ],
+          "related_to": [
+            "derivatives"
+          ]
+        },
+        {
+          "id": "derivatives",
+          "name": "Derivatives",
+          "prerequisites": [
+            "limits"
+          ],
+          "applications": [
+            "velocity",
+            "optimization",
+            "AI gradients"
+          ],
+          "related_to": [
+            "integrals"
+          ]
+        },
+        {
+          "id": "integrals",
+          "name": "Integrals",
+          "prerequisites": [
+            "derivatives"
+          ],
+          "applications": [
+            "area",
+            "accumulation",
+            "physics"
+          ],
+          "related_to": [
+            "differential_equations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "university_math",
+      "name": "University Mathematics",
+      "concepts": [
+        {
+          "id": "operator_algebra",
+          "name": "Operator Algebra (Abstract Algebra)",
+          "prerequisites": [
+            "geometric_series",
+            "transformations",
+            "integrals"
+          ],
+          "applications": [
+            "Taylor series derivation",
+            "vector summation",
+            "operator equations",
+            "quantum mechanics operators"
+          ],
+          "related_to": [
+            "geometric_series",
+            "transformations",
+            "integrals",
+            "structure"
+          ]
+        },
+        {
+          "id": "taylor_series",
+          "name": "Taylor Series Expansion",
+          "prerequisites": [
+            "integrals",
+            "limits",
+            "geometric_series"
+          ],
+          "applications": [
+            "function approximation",
+            "physics modelling",
+            "numerical computation"
+          ],
+          "related_to": [
+            "integrals",
+            "geometric_series",
+            "operator_algebra"
+          ]
+        },
+        {
+          "id": "vector_operations",
+          "name": "Vector Operations and Geometry",
+          "prerequisites": [
+            "coordinate_geometry",
+            "transformations"
+          ],
+          "applications": [
+            "Archimedean spiral",
+            "vector superposition",
+            "plane geometry"
+          ],
+          "related_to": [
+            "coordinate_geometry",
+            "transformations",
+            "geometric_series"
+          ]
+        }
+      ]
+    }
+  ],
+  "cross_domain_connections": [
+    {
+      "math_concept": "linear_functions",
+      "physics": "constant velocity motion",
+      "art": "perspective drawing",
+      "music": "linear pitch ramps"
+    },
+    {
+      "math_concept": "sine",
+      "physics": "waves",
+      "art": "generative curves",
+      "music": "sound synthesis"
+    },
+    {
+      "math_concept": "transformations",
+      "physics": "rotation and motion",
+      "art": "animation and design",
+      "technology": "game engines"
+    }
+  ],
+  "project_ideas": [
+    {
+      "title": "Function Universe",
+      "description": "Interactive graph visualization connecting functions to physics, art, and music."
+    },
+    {
+      "title": "Math Knowledge Graph",
+      "description": "Neo4j-powered educational ontology explorer."
+    },
+    {
+      "title": "Generative Geometry Engine",
+      "description": "Create art using geometry and transformation rules."
+    }
+  ]
+}

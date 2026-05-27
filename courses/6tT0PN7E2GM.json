@@ -1,0 +1,161 @@
+{
+  "video_id": "6tT0PN7E2GM",
+  "url": "https://www.youtube.com/watch?v=6tT0PN7E2GM",
+  "title": "【漫士科普】為什麼說數學思維就是抽象 #數學 #科普 #math",
+  "channel": "漫士沉思录 Meditation Math",
+  "language": "zh-TW",
+  "duration_sec": 755,
+  "published": "2024-01-01",
+  "ontology_ref": "k12_math_ontology.json",
+
+  "meta_concepts_touched": ["structure", "transformation", "relation"],
+
+  "concept_path": [
+    { "order": 1, "concept_id": "geometric_series",     "time_sec": 0   },
+    { "order": 2, "concept_id": "multiplication",       "time_sec": 64  },
+    { "order": 3, "concept_id": "exponential_functions","time_sec": 64  },
+    { "order": 4, "concept_id": "limits",               "time_sec": 130 },
+    { "order": 5, "concept_id": "operator_algebra",     "time_sec": 192 },
+    { "order": 6, "concept_id": "transformations",      "time_sec": 256 },
+    { "order": 7, "concept_id": "vector_operations",    "time_sec": 319 },
+    { "order": 8, "concept_id": "integrals",            "time_sec": 509 },
+    { "order": 9, "concept_id": "taylor_series",        "time_sec": 573 }
+  ],
+
+  "timestamps": [
+    {
+      "time": "0:00",
+      "time_sec": 0,
+      "concept_ids": ["geometric_series", "pattern_recognition"],
+      "label": "Intro: mathematical thinking means abstraction",
+      "note": "Starting from geometric series summation in high school, previews a three-level progression: special case → general formula → abstract operator.",
+      "verified": true
+    },
+    {
+      "time": "1:04",
+      "time_sec": 64,
+      "concept_ids": ["geometric_series", "multiplication", "exponential_functions"],
+      "label": "Deriving the geometric series sum formula",
+      "note": "Uses the 'multiply by common ratio to cancel terms' trick to derive S = a(1−xⁿ⁺¹)/(1−x), extended to the infinite series a/(1−x).",
+      "verified": true
+    },
+    {
+      "time": "2:10",
+      "time_sec": 130,
+      "concept_ids": ["geometric_series", "limits", "operator_algebra"],
+      "label": "First abstraction: from special trick to general pattern",
+      "note": "Reveals the essence behind 'multiply by 2' is 'multiply by common ratio to create a cancellation structure', lifting a special technique to a universal principle.",
+      "verified": true
+    },
+    {
+      "time": "3:12",
+      "time_sec": 192,
+      "concept_ids": ["operator_algebra", "structure"],
+      "label": "Second abstraction: replace multiplication with operator P",
+      "note": "Introduces operator symbol P (any operation on an element) and identity I, rewriting geometric series as (I+P+P²+⋯)a = (I−P)⁻¹a in operator language.",
+      "verified": true
+    },
+    {
+      "time": "4:16",
+      "time_sec": 256,
+      "concept_ids": ["operator_algebra", "transformation", "structure"],
+      "label": "Full derivation of abstract geometric sum formula",
+      "note": "Derives (I−P)⁻¹ in operator notation from 'inverse of multiplying by (1−x)', completely detached from the original geometric series context.",
+      "verified": true
+    },
+    {
+      "time": "5:19",
+      "time_sec": 319,
+      "concept_ids": ["transformations", "vector_operations", "geometric_series"],
+      "label": "Application 1: P as rotate-and-scale vector operation",
+      "note": "Lets P = rotate 45° counterclockwise and shrink by √2; infinite vector superposition converges to a point, tracing an Archimedean spiral.",
+      "verified": true
+    },
+    {
+      "time": "6:22",
+      "time_sec": 382,
+      "concept_ids": ["vector_operations", "transformations"],
+      "label": "Geometric verification: spiral endpoint matches formula",
+      "note": "Uses the isosceles right triangle relationship to analyse (I−P) geometrically (clockwise 45°, shrink √2); the inverse stretches and rotates back, perfectly matching the spiral limit.",
+      "verified": true
+    },
+    {
+      "time": "7:27",
+      "time_sec": 447,
+      "concept_ids": ["vector_operations", "operator_algebra"],
+      "label": "Geometric result confirmed: amazing moment",
+      "note": "The vector produced by the formula's right-hand side coincides exactly with the spiral's convergence point, validating the abstract formula in a geometric context.",
+      "verified": true
+    },
+    {
+      "time": "8:29",
+      "time_sec": 509,
+      "concept_ids": ["integrals", "operator_algebra"],
+      "label": "Application 2: P as indefinite integral operator",
+      "note": "Rewrites the definition of e^x ('equals its own integral') as (I−∫)e^x = 0; inverting the operator (I−∫) expands it into an infinite series.",
+      "verified": true
+    },
+    {
+      "time": "9:33",
+      "time_sec": 573,
+      "concept_ids": ["taylor_series", "integrals", "operator_algebra"],
+      "label": "Iterating integrals to derive Taylor expansion of e^x",
+      "note": "Applies the abstract geometric sum formula in reverse, repeatedly integrating constant c, and recovers e^x = 1 + x + x²/2! + ⋯ with c = 1 from the boundary condition.",
+      "verified": true
+    },
+    {
+      "time": "10:35",
+      "time_sec": 635,
+      "concept_ids": ["operator_algebra", "structure"],
+      "label": "Poincaré and Oppenheimer: math names the same thing differently",
+      "note": "Quotes Poincaré ('mathematics is the art of giving the same name to different things') and Bohr's line in Oppenheimer to crystallise the thesis: mathematical thinking is finding shared abstract structure.",
+      "verified": true
+    },
+    {
+      "time": "11:40",
+      "time_sec": 700,
+      "concept_ids": ["operator_algebra", "structure", "pattern_recognition"],
+      "label": "Conclusion: operator algebra as the music behind the symbols",
+      "note": "Numeric summation, vector spiral, and Taylor expansion all share the structure 'repeatedly apply P then sum'; this branch is called operator algebra, and that shared structure is the music behind mathematical notation.",
+      "verified": true
+    }
+  ],
+
+  "cross_domain": [
+    {
+      "concept": "geometric_series",
+      "domain": "physics",
+      "description": "Exponential decay (radioactive decay, RC-circuit charging)",
+      "note": "Geometric series summation is the foundation for understanding exponential decay."
+    },
+    {
+      "concept": "vector_operations",
+      "domain": "geometry",
+      "description": "Archimedean spiral as limit of infinite vector superposition",
+      "note": "The convergence point of the infinite vector sum traces the endpoint of an Archimedean spiral."
+    },
+    {
+      "concept": "taylor_series",
+      "domain": "physics",
+      "description": "Exponential of Hamiltonian operator in quantum mechanics",
+      "note": "The Taylor expansion of e^x is one of the most important applications of operator algebra in physics."
+    },
+    {
+      "concept": "operator_algebra",
+      "domain": "humanities / film",
+      "description": "Bohr's line in Oppenheimer: 'algebra is like sheet music'",
+      "note": "Cross-disciplinary abstraction: reading notation vs. hearing the music behind the symbols."
+    }
+  ],
+
+  "key_arguments": [
+    "Mathematical thinking is fundamentally about abstraction: finding the shared structure beneath apparently different objects.",
+    "The geometric series trick is not about the formula itself, but about 'multiplying by the common ratio to create a cancellation structure'.",
+    "Replacing concrete multiplication with operator symbol P lifts the geometric sum formula to apply to vector operations and integral operations alike.",
+    "The same abstract formula holds in three different domains: numeric (geometric series), geometric (vector spiral), and analytic (Taylor expansion of e^x).",
+    "Poincaré: mathematics is the art of giving the same name to different things — the spirit of operator algebra."
+  ],
+
+  "source_notes": "Subtitles via YouTube Transcript extension (GET SUBTITLES). 12 segments. Duration 12:35. New concepts added to k12_math_ontology.json v1.1: geometric_series, operator_algebra, taylor_series, vector_operations.",
+  "verified": true
+}

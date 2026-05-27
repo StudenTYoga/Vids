@@ -1,0 +1,209 @@
+/* ─── Base ───────────────────────────────────────────────────── */
+.board-root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+}
+
+/* ─── Toolbar ────────────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+.toolbar__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.toolbar__toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #94a3b8;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.toolbar__toggle input[type='checkbox'] {
+  width: 14px;
+  height: 14px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.toolbar__legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.legend-item {
+  font-size: 11px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.legend-item::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+  flex-shrink: 0;
+}
+
+/* ─── Canvas ─────────────────────────────────────────────────── */
+.board-root .react-flow {
+  flex: 1;
+  background: #0f172a;
+}
+
+/* ─── Meta concept nodes ─────────────────────────────────────── */
+.meta-node {
+  background: #0f172a;
+  border: 2px solid #d97706;
+  border-radius: 12px;
+  padding: 12px 16px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 0 24px rgba(217, 119, 6, 0.2), 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.meta-node__star {
+  color: #f59e0b;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.meta-node__name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fef3c7;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.meta-node__desc {
+  font-size: 10px;
+  color: #78716c;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ─── Domain header nodes ────────────────────────────────────── */
+.domain-node {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 210px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.domain-node__label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ─── Concept nodes ──────────────────────────────────────────── */
+.concept-node {
+  background: #1e293b;
+  border: 1.5px solid var(--color);
+  border-radius: 10px;
+  padding: 10px 13px;
+  width: 210px;
+  cursor: default;
+  transition: box-shadow 0.18s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.concept-node:hover {
+  box-shadow: 0 0 0 2px var(--color), 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* React Flow adds .selected on the outer wrapper */
+.react-flow__node.selected .concept-node {
+  border-width: 2px;
+  box-shadow: 0 0 0 3px var(--color), 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.concept-node__name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #f1f5f9;
+  line-height: 1.35;
+}
+
+.concept-node__formula {
+  font-size: 11px;
+  color: var(--color);
+  margin-top: 5px;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  opacity: 0.9;
+}
+
+.concept-node__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 7px;
+}
+
+.concept-node__tag {
+  font-size: 9.5px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+/* ─── React Flow UI overrides ────────────────────────────────── */
+.react-flow__controls {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: #1e293b !important;
+  border-bottom: 1px solid #334155 !important;
+  fill: #94a3b8 !important;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.react-flow__controls-button:hover {
+  background: #334155 !important;
+  fill: #f1f5f9 !important;
+}
+
+.react-flow__attribution a {
+  color: #475569 !important;
+}

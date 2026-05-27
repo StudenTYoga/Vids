@@ -1,0 +1,190 @@
+{
+  "video_id": "PA8q159lfWY",
+  "url": "https://www.youtube.com/watch?v=PA8q159lfWY",
+  "title": "【无痛线代】向量内积背后，竟然藏着宇宙的对称性？",
+  "channel": "漫士沉思录 Meditation Math",
+  "language": "zh-CN",
+  "duration_sec": 811,
+  "published": "2025-01-20",
+  "ontology_ref": "k12_math_ontology.json",
+  "views": 37000,
+  "tags": [
+    "线性代数",
+    "向量",
+    "内积",
+    "对称性",
+    "物理",
+    "数学",
+    "科普"
+  ],
+  "meta_concepts_touched": [
+    "relation",
+    "structure",
+    "transformation"
+  ],
+  "concept_path": [
+    "spatial_reasoning",
+    "multiplication",
+    "cosine",
+    "coordinate_geometry",
+    "transformations",
+    "structure"
+  ],
+  "timestamps": [
+    {
+      "time": "0:00",
+      "time_sec": 0,
+      "concept_ids": [
+        "spatial_reasoning",
+        "multiplication"
+      ],
+      "label": "問題提出：點積為何從物理投影定義？",
+      "note": "幾何定義：兩向量之積 = 一向量在另一向量上的投影乘以長度",
+      "verified": true
+    },
+    {
+      "time": "0:14",
+      "time_sec": 14,
+      "concept_ids": [
+        "cosine",
+        "multiplication"
+      ],
+      "label": "a·b = |a||b|cosθ，一個高中生的困惑",
+      "note": "一位 Bilibili 高一生質疑：數學運算為何從物理角度定義？這是影片核心問題意識",
+      "verified": true
+    },
+    {
+      "time": "0:35",
+      "time_sec": 35,
+      "concept_ids": [
+        "structure"
+      ],
+      "label": "這個問題不簡單：需追溯到歐式空間的對稱性",
+      "note": "答案涉及 metric space、三角函數的本質，不是循環論證",
+      "verified": true
+    },
+    {
+      "time": "0:51",
+      "time_sec": 51,
+      "concept_ids": [
+        "structure",
+        "relation"
+      ],
+      "label": "預告：向量乘法 → 度量空間 → 三角函數的深層聯繫",
+      "note": "這部影片的知識路徑預告",
+      "verified": true
+    },
+    {
+      "time": "1:08",
+      "time_sec": 68,
+      "concept_ids": [
+        "spatial_reasoning",
+        "addition"
+      ],
+      "label": "向量加減法是自然的（平行四邊形法則），乘法不是",
+      "note": "向量乘法需要人工定義：結果是數、向量還是其他？三種乘法都存在",
+      "verified": true
+    },
+    {
+      "time": "1:30",
+      "time_sec": 90,
+      "concept_ids": [
+        "multiplication"
+      ],
+      "label": "三種向量乘法：dot product、cross product、outer product",
+      "note": "點積結果是純量，叉積是向量（只在3D），外積是張量",
+      "verified": true
+    },
+    {
+      "time": "1:51",
+      "time_sec": 111,
+      "concept_ids": [
+        "structure",
+        "relation"
+      ],
+      "label": "內積的本質：滿足兩個條件的運算",
+      "note": "條件一：對 u, v 各自線性；條件二：結果只依賴 u, v 的相對位置。這兩個條件唯一決定了內積的形式",
+      "verified": true
+    },
+    {
+      "time": "2:23",
+      "time_sec": 143,
+      "concept_ids": [
+        "structure"
+      ],
+      "label": "嚴格推導：這兩個性質唯一導出 dot product 的定義",
+      "note": "不是任意定義，而是從公理出發的必然結果",
+      "verified": true
+    },
+    {
+      "time": "2:40",
+      "time_sec": 160,
+      "concept_ids": [
+        "multiplication",
+        "relation"
+      ],
+      "label": "線性性的意義：功 W = F·s 的物理例子",
+      "note": "教科書用功來說明線性：力加倍則功加倍，位移加倍則功加倍",
+      "verified": true
+    },
+    {
+      "time": "6:41",
+      "time_sec": 401,
+      "concept_ids": [
+        "coordinate_geometry",
+        "multiplication"
+      ],
+      "label": "用線性性推導座標計算公式",
+      "note": "把向量展開成基底，利用線性性移出長度係數，歸結為基底之間的內積",
+      "verified": true
+    },
+    {
+      "time": "6:56",
+      "time_sec": 416,
+      "concept_ids": [
+        "coordinate_geometry",
+        "structure"
+      ],
+      "label": "分類：同方向基底的積 vs 正交基底的積",
+      "note": "同向基底乘積=長度平方（=1對單位基底），正交基底乘積=0",
+      "verified": true
+    },
+    {
+      "time": "7:14",
+      "time_sec": 434,
+      "concept_ids": [
+        "transformations",
+        "structure"
+      ],
+      "label": "正交基底內積=0 的對稱性論證",
+      "note": "將 b 反轉180°，由相對位置不變性知積不變，但線性性要求積變號 → 只能為0。宇宙對稱性在此體現",
+      "verified": true
+    }
+  ],
+  "cross_domain": [
+    {
+      "math_concept": "cosine",
+      "physics": "力學做功 W = |F||s|cosθ、太陽能電池發電功率",
+      "note": "內積源自物理中反覆出現的兩向量相乘結構"
+    },
+    {
+      "math_concept": "structure",
+      "physics": "歐式空間旋轉對稱性（正交變換不改變相對位置）",
+      "note": "正交基底積=0 的根本原因：宇宙在旋轉下對稱"
+    },
+    {
+      "math_concept": "coordinate_geometry",
+      "technology": "GPU shader 中的 dot product（光照、投影計算）",
+      "note": "電腦圖學大量依賴內積做向量投影"
+    }
+  ],
+  "key_arguments": [
+    "向量乘法沒有自然定義，需從目的出發人工設計",
+    "內積的兩個公理：雙重線性性（Bilinearity）+ 相對位置不變性",
+    "這兩個公理從邏輯上唯一決定了 a·b = |a||b|cosθ 的形式",
+    "正交基底內積=0 源自宇宙旋轉對稱性，不是任意規定",
+    "三位一體：內積 ↔ 夾角 ↔ 距離，由同一個度規結構決定"
+  ],
+  "source_notes": "字幕來源：YouTube Transcript 擴充，共40條。時間點已驗證。Ontology: k12_math_ontology.json",
+  "verified": true
+}
