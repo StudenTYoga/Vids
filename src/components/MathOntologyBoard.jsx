@@ -180,6 +180,39 @@ const NODE_TYPES = {
   concept: ConceptNode,
 };
 
+// ─── Side panel ───────────────────────────────────────────────
+function SidePanel({ open, onToggle }) {
+  return (
+    <aside className={`side-panel ${open ? 'side-panel--open' : ''}`}>
+      {/* Collapse / expand tab */}
+      <button
+        className="side-panel__toggle"
+        onClick={onToggle}
+        aria-label={open ? 'Collapse panel' : 'Expand panel'}
+      >
+        {open ? '›' : '‹'}
+      </button>
+
+      {/* Scrollable content */}
+      <div className="side-panel__inner">
+        <header className="side-panel__head">
+          <span className="side-panel__title">Course Player</span>
+        </header>
+
+        <div className="side-panel__body">
+          {/* ── placeholder – replace with real course content later ── */}
+          <div className="side-panel__placeholder">
+            <div className="side-panel__ph-icon">🎬</div>
+            <p className="side-panel__ph-text">
+              Right-click a concept node to open related courses here.
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
 // ─── Layout constants ─────────────────────────────────────────
 const COL_WIDTH       = 260;
 const CONCEPT_START_Y = 190;
@@ -285,6 +318,7 @@ function buildGraph(data, showRelated, understoodSet, highlightedSet, hlMode = n
 // ─── Main component ───────────────────────────────────────────
 export default function MathOntologyBoard() {
   const [showRelated,   setShowRelated]   = useState(false);
+  const [panelOpen,     setPanelOpen]     = useState(false);
   const [menu,          setMenu]          = useState(null);            // { nodeId, x, y } | null
   const [highlighted,   setHighlighted]   = useState(() => new Set());
   const [hlMode,        setHlMode]        = useState(null);            // 'prereq' | 'related' | null
@@ -429,36 +463,40 @@ export default function MathOntologyBoard() {
         </div>
       </header>
 
-      {/* ── Canvas ── */}
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        nodeTypes={NODE_TYPES}
-        nodesConnectable={false}
-        onNodeContextMenu={onNodeContextMenu}
-        onPaneClick={onPaneClick}
-        {...(savedViewport
-          ? { defaultViewport: savedViewport }
-          : { fitView: true, fitViewOptions: { padding: 0.1 } }
-        )}
-        onMoveEnd={handleMoveEnd}
-        minZoom={0.05}
-        maxZoom={2}
-      >
-        <Background variant={BackgroundVariant.Dots} gap={28} size={1.2} color="#1e293b" />
-        <Controls />
-        <MiniMap
-          nodeColor={(n) => {
-            if (n.type === 'meta')   return '#f59e0b';
-            if (n.type === 'domain') return n.data.color;
-            return n.data?.color ?? '#64748b';
-          }}
-          maskColor="rgba(15,23,42,0.75)"
-          style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8 }}
-        />
-      </ReactFlow>
+      {/* ── Canvas + side panel ── */}
+      <div className="board-body">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          nodeTypes={NODE_TYPES}
+          nodesConnectable={false}
+          onNodeContextMenu={onNodeContextMenu}
+          onPaneClick={onPaneClick}
+          {...(savedViewport
+            ? { defaultViewport: savedViewport }
+            : { fitView: true, fitViewOptions: { padding: 0.1 } }
+          )}
+          onMoveEnd={handleMoveEnd}
+          minZoom={0.05}
+          maxZoom={2}
+        >
+          <Background variant={BackgroundVariant.Dots} gap={28} size={1.2} color="#1e293b" />
+          <Controls />
+          <MiniMap
+            nodeColor={(n) => {
+              if (n.type === 'meta')   return '#f59e0b';
+              if (n.type === 'domain') return n.data.color;
+              return n.data?.color ?? '#64748b';
+            }}
+            maskColor="rgba(15,23,42,0.75)"
+            style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8 }}
+          />
+        </ReactFlow>
+
+        <SidePanel open={panelOpen} onToggle={() => setPanelOpen((v) => !v)} />
+      </div>
     </div>
   );
 }
