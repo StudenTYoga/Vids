@@ -168,6 +168,24 @@ function buildGraph(data, showRelated) {
   return { nodes, edges };
 }
 
+// ─── Viewport persistence ─────────────────────────────────────
+const VIEWPORT_KEY = 'math-ontology-viewport';
+
+function loadViewport() {
+  try {
+    const raw = localStorage.getItem(VIEWPORT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveViewport({ x, y, zoom }) {
+  try {
+    localStorage.setItem(VIEWPORT_KEY, JSON.stringify({ x, y, zoom }));
+  } catch {}
+}
+
 // ─── Main component ───────────────────────────────────────────
 export default function MathOntologyBoard() {
   const [showRelated, setShowRelated] = useState(false);
@@ -175,6 +193,9 @@ export default function MathOntologyBoard() {
   const init = useMemo(() => buildGraph(ontologyData, false), []);
   const [nodes, setNodes, onNodesChange] = useNodesState(init.nodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(init.edges);
+
+  // Read once on mount; null means "no saved state → use fitView"
+  const savedViewport = useMemo(() => loadViewport(), []);
 
   const handleToggle = useCallback(
     (e) => {
@@ -186,6 +207,10 @@ export default function MathOntologyBoard() {
     },
     [setNodes, setEdges],
   );
+
+  const handleMoveEnd = useCallback((_, viewport) => {
+    saveViewport(viewport);
+  }, []);
 
   return (
     <div className="board-root">
@@ -215,8 +240,12 @@ export default function MathOntologyBoard() {
         onEdgesChange={onEdgesChange}
         nodeTypes={NODE_TYPES}
         nodesConnectable={false}
-        fitView
-        fitViewOptions={{ padding: 0.1 }}
+        // Restore saved position; fall back to fitView on first visit
+        {...(savedViewport
+          ? { defaultViewport: savedViewport }
+          : { fitView: true, fitViewOptions: { padding: 0.1 } }
+        )}
+        onMoveEnd={handleMoveEnd}
         minZoom={0.05}
         maxZoom={2}
       >
