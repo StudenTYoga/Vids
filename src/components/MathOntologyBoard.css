@@ -192,6 +192,17 @@
   color: #fef3c7;
 }
 
+/* ─── Concept node: related-to highlight ────────────────────── */
+.concept-node--hl-related {
+  border-color: #06b6d4 !important;
+  background: #071e26;
+  box-shadow: 0 0 0 2px #06b6d4, 0 0 16px rgba(6, 182, 212, 0.35) !important;
+}
+
+.concept-node--hl-related .concept-node__name {
+  color: #cffafe;
+}
+
 /* ─── Concept node: understood ───────────────────────────────── */
 .concept-node--understood {
   background: #0f2518;

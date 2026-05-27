@@ -65,7 +65,7 @@ function getPrereqChain(startId, prereqMap) {
 }
 
 // ─── Context menu ─────────────────────────────────────────────
-function ContextMenu({ menu, isUnderstood, onHighlight, onToggleUnderstood, onClose }) {
+function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onToggleUnderstood, onClose }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -92,7 +92,7 @@ function ContextMenu({ menu, isUnderstood, onHighlight, onToggleUnderstood, onCl
   const W   = window.innerWidth;
   const H   = window.innerHeight;
   const MXW = 220;
-  const MXH = 90;
+  const MXH = 130;
   const left = Math.min(menu.x, W - MXW - 8);
   const top  = Math.min(menu.y, H - MXH - 8);
 
@@ -101,6 +101,10 @@ function ContextMenu({ menu, isUnderstood, onHighlight, onToggleUnderstood, onCl
       <button className="ctx-menu__item" onClick={onHighlight}>
         <span className="ctx-menu__icon">🔗</span>
         Highlight prerequisites
+      </button>
+      <button className="ctx-menu__item" onClick={onHighlightRelated}>
+        <span className="ctx-menu__icon">↔️</span>
+        Highlight related to
       </button>
       <button
         className={`ctx-menu__item ${isUnderstood ? 'ctx-menu__item--active' : ''}`}
@@ -139,8 +143,9 @@ function ConceptNode({ data }) {
     <div
       className={[
         'concept-node',
-        data.isHighlighted ? 'concept-node--hl'         : '',
-        data.isUnderstood  ? 'concept-node--understood' : '',
+        data.isHighlighted && data.hlMode === 'prereq'   ? 'concept-node--hl'         : '',
+        data.isHighlighted && data.hlMode === 'related'  ? 'concept-node--hl-related'  : '',
+        data.isUnderstood                                ? 'concept-node--understood'  : '',
       ].filter(Boolean).join(' ')}
       style={{ '--color': data.color }}
     >
@@ -182,7 +187,7 @@ const CONCEPT_GAP     = 130;
 const META_Y          = -330;
 
 // ─── Graph builder ────────────────────────────────────────────
-function buildGraph(data, showRelated, understoodSet, highlightedSet) {
+function buildGraph(data, showRelated, understoodSet, highlightedSet, hlMode = null) {
   const uSet = understoodSet  ?? new Set();
   const hSet = highlightedSet ?? new Set();
 
@@ -218,6 +223,7 @@ function buildGraph(data, showRelated, understoodSet, highlightedSet) {
           color,
           isUnderstood:  uSet.has(c.id),
           isHighlighted: hSet.has(c.id),
+          hlMode:        hSet.has(c.id) ? hlMode : null,
         },
       });
     });
@@ -278,18 +284,31 @@ function buildGraph(data, showRelated, understoodSet, highlightedSet) {
 
 // ─── Main component ───────────────────────────────────────────
 export default function MathOntologyBoard() {
-  const [showRelated, setShowRelated] = useState(false);
-  const [menu,        setMenu]        = useState(null);           // { nodeId, x, y } | null
-  const [highlighted, setHighlighted] = useState(() => new Set());
-  const [understood,  setUnderstood]  = useState(loadUnderstood); // Set<string>
+  const [showRelated,   setShowRelated]   = useState(false);
+  const [menu,          setMenu]          = useState(null);            // { nodeId, x, y } | null
+  const [highlighted,   setHighlighted]   = useState(() => new Set());
+  const [hlMode,        setHlMode]        = useState(null);            // 'prereq' | 'related' | null
+  const [understood,    setUnderstood]    = useState(loadUnderstood);  // Set<string>
 
   const savedViewport = useMemo(() => loadViewport(), []);
 
-  // prereqMap: conceptId → string[] of prerequisite IDs
+  // prereqMap: conceptId → prerequisite IDs
   const prereqMap = useMemo(() => {
     const map = {};
     ontologyData.domains.forEach((d) =>
       d.concepts.forEach((c) => { map[c.id] = c.prerequisites ?? []; })
+    );
+    return map;
+  }, []);
+
+  // relatedMap: conceptId → related_to IDs that actually exist as concept nodes
+  const relatedMap = useMemo(() => {
+    const known = new Set(ontologyData.domains.flatMap((d) => d.concepts.map((c) => c.id)));
+    const map   = {};
+    ontologyData.domains.forEach((d) =>
+      d.concepts.forEach((c) => {
+        map[c.id] = (c.related_to ?? []).filter((id) => known.has(id));
+      })
     );
     return map;
   }, []);
@@ -303,13 +322,19 @@ export default function MathOntologyBoard() {
   const [nodes, setNodes, onNodesChange] = useNodesState(init.nodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(init.edges);
 
-  // Patch isHighlighted / isUnderstood into existing nodes without full rebuild
-  const applyMeta = useCallback((hlSet, undSet) => {
+  // Patch isHighlighted / isUnderstood / hlMode into existing nodes without full rebuild
+  const applyMeta = useCallback((hlSet, undSet, mode = null) => {
     setNodes((nds) =>
       nds.map((n) =>
-        n.type !== 'concept'
-          ? n
-          : { ...n, data: { ...n.data, isHighlighted: hlSet.has(n.id), isUnderstood: undSet.has(n.id) } }
+        n.type !== 'concept' ? n : {
+          ...n,
+          data: {
+            ...n.data,
+            isHighlighted: hlSet.has(n.id),
+            hlMode:        hlSet.has(n.id) ? mode : null,
+            isUnderstood:  undSet.has(n.id),
+          },
+        }
       )
     );
   }, [setNodes]);
@@ -318,10 +343,10 @@ export default function MathOntologyBoard() {
   const handleToggle = useCallback((e) => {
     const checked = e.target.checked;
     setShowRelated(checked);
-    const { nodes: n, edges: eg } = buildGraph(ontologyData, checked, understood, highlighted);
+    const { nodes: n, edges: eg } = buildGraph(ontologyData, checked, understood, highlighted, hlMode);
     setNodes(n);
     setEdges(eg);
-  }, [setNodes, setEdges, understood, highlighted]);
+  }, [setNodes, setEdges, understood, highlighted, hlMode]);
 
   // ── Viewport save ──
   const handleMoveEnd = useCallback((_, viewport) => saveViewport(viewport), []);
@@ -339,17 +364,29 @@ export default function MathOntologyBoard() {
   const onPaneClick = useCallback(() => {
     setMenu(null);
     setHighlighted(new Set());
-    applyMeta(new Set(), understood);
+    setHlMode(null);
+    applyMeta(new Set(), understood, null);
   }, [applyMeta, understood]);
 
   const handleHighlightPrereqs = useCallback(() => {
     if (!menu) return;
     const chain = getPrereqChain(menu.nodeId, prereqMap);
-    chain.add(menu.nodeId); // include the selected node itself
+    chain.add(menu.nodeId);
     setHighlighted(chain);
-    applyMeta(chain, understood);
+    setHlMode('prereq');
+    applyMeta(chain, understood, 'prereq');
     setMenu(null);
   }, [menu, prereqMap, understood, applyMeta]);
+
+  const handleHighlightRelated = useCallback(() => {
+    if (!menu) return;
+    const related = new Set(relatedMap[menu.nodeId] ?? []);
+    related.add(menu.nodeId);
+    setHighlighted(related);
+    setHlMode('related');
+    applyMeta(related, understood, 'related');
+    setMenu(null);
+  }, [menu, relatedMap, understood, applyMeta]);
 
   const handleToggleUnderstood = useCallback(() => {
     if (!menu) return;
@@ -358,9 +395,9 @@ export default function MathOntologyBoard() {
     else                        next.add(menu.nodeId);
     setUnderstood(next);
     saveUnderstood(next);
-    applyMeta(highlighted, next);
+    applyMeta(highlighted, next, hlMode);
     setMenu(null);
-  }, [menu, understood, highlighted, applyMeta]);
+  }, [menu, understood, highlighted, hlMode, applyMeta]);
 
   return (
     <div className="board-root">
@@ -369,6 +406,7 @@ export default function MathOntologyBoard() {
         menu={menu}
         isUnderstood={menu ? understood.has(menu.nodeId) : false}
         onHighlight={handleHighlightPrereqs}
+        onHighlightRelated={handleHighlightRelated}
         onToggleUnderstood={handleToggleUnderstood}
         onClose={closeMenu}
       />
