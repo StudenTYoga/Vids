@@ -105,7 +105,13 @@ function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onSh
   const top  = Math.min(menu.y, H - MXH - 8);
 
   return (
-    <div ref={ref} className="ctx-menu" style={{ top, left }}>
+    <div
+      ref={ref}
+      className="ctx-menu"
+      style={{ top, left }}
+      onMouseDown={(e) => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
+    >
       <button className="ctx-menu__item" onClick={onHighlight}>
         <span className="ctx-menu__icon">🔗</span>
         Highlight prerequisites
@@ -124,6 +130,46 @@ function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onSh
       >
         <span className="ctx-menu__icon">{isUnderstood ? '✅' : '⬜'}</span>
         {isUnderstood ? 'Unmark as understood' : 'Mark as understood'}
+      </button>
+    </div>
+  );
+}
+
+// ─── Course card context menu ─────────────────────────────────
+function CourseContextMenu({ menu, onHighlight, onClose }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!menu) return;
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const t = setTimeout(() => {
+      const onClick = (e) => { if (ref.current && !ref.current.contains(e.target)) onClose(); };
+      window.addEventListener('click', onClick);
+      ref.current._cleanup = () => window.removeEventListener('click', onClick);
+    }, 0);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('keydown', onKey);
+      ref.current?._cleanup?.();
+    };
+  }, [menu, onClose]);
+
+  if (!menu) return null;
+  const left = Math.min(menu.x, window.innerWidth  - 220 - 8);
+  const top  = Math.min(menu.y, window.innerHeight -  60 - 8);
+
+  return (
+    <div
+      ref={ref}
+      className="ctx-menu"
+      style={{ top, left }}
+      onMouseDown={(e) => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button className="ctx-menu__item" onClick={() => onHighlight(menu.video)}>
+        <span className="ctx-menu__icon">✨</span>
+        Highlight concepts
       </button>
     </div>
   );
@@ -155,8 +201,9 @@ function ConceptNode({ data }) {
     <div
       className={[
         'concept-node',
-        data.isHighlighted && data.hlMode === 'prereq'   ? 'concept-node--hl'         : '',
+        data.isHighlighted && data.hlMode === 'prereq'   ? 'concept-node--hl'          : '',
         data.isHighlighted && data.hlMode === 'related'  ? 'concept-node--hl-related'  : '',
+        data.isHighlighted && data.hlMode === 'course'   ? 'concept-node--hl-course'   : '',
         data.isUnderstood                                ? 'concept-node--understood'  : '',
       ].filter(Boolean).join(' ')}
       style={{ '--color': data.color }}
@@ -193,13 +240,24 @@ const NODE_TYPES = {
 };
 
 // ─── Course card ──────────────────────────────────────────────
-function CourseCard({ video, conceptId }) {
+function CourseCard({ video, conceptId, onContextMenu }) {
   const entry = video.concept_path.find((cp) => cp.concept_id === conceptId);
   const tSec  = entry?.time_sec ?? null;
   const ytUrl = `https://www.youtube.com/watch?v=${video.video_id}${tSec ? `&t=${tSec}` : ''}`;
 
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    onContextMenu?.(e, video);
+  };
+
   return (
-    <a href={ytUrl} target="_blank" rel="noopener noreferrer" className="course-card">
+    <a
+      href={ytUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="course-card"
+      onContextMenu={handleContextMenu}
+    >
       <div className="course-card__top">
         <span className="course-card__lang">{video.language}</span>
         {video.verified && <span className="course-card__verified">✓ verified</span>}
@@ -219,7 +277,7 @@ function CourseCard({ video, conceptId }) {
 }
 
 // ─── Side panel ───────────────────────────────────────────────
-function SidePanel({ open, onToggle, selectedConcept }) {
+function SidePanel({ open, onToggle, selectedConcept, onCourseContextMenu }) {
   const courses = useMemo(() => {
     if (!selectedConcept) return [];
     const ids = coursesIndex.concept_coverage[selectedConcept.id] ?? [];
@@ -269,7 +327,12 @@ function SidePanel({ open, onToggle, selectedConcept }) {
                 <strong>{selectedConcept.label}</strong>
               </p>
               {courses.map((video) => (
-                <CourseCard key={video.video_id} video={video} conceptId={selectedConcept.id} />
+                <CourseCard
+                  key={video.video_id}
+                  video={video}
+                  conceptId={selectedConcept.id}
+                  onContextMenu={onCourseContextMenu}
+                />
               ))}
             </div>
           )}
@@ -386,7 +449,8 @@ export default function MathOntologyBoard() {
   const [showRelated,     setShowRelated]     = useState(false);
   const [panelOpen,       setPanelOpen]       = useState(false);
   const [selectedConcept, setSelectedConcept] = useState(null); // { id, label }
-  const [menu,            setMenu]            = useState(null);            // { nodeId, x, y } | null
+  const [menu,            setMenu]            = useState(null);  // node context menu
+  const [courseMenu,      setCourseMenu]      = useState(null);  // { video, x, y }            // { nodeId, x, y } | null
   const [highlighted,   setHighlighted]   = useState(() => new Set());
   const [hlMode,        setHlMode]        = useState(null);            // 'prereq' | 'related' | null
   const [understood,    setUnderstood]    = useState(loadUnderstood);  // Set<string>
@@ -496,6 +560,22 @@ export default function MathOntologyBoard() {
     setMenu(null);
   }, [menu, relatedMap, understood, applyMeta]);
 
+  const handleCourseContextMenu = useCallback((e, video) => {
+    e.preventDefault();
+    setCourseMenu({ video, x: e.clientX, y: e.clientY });
+  }, []);
+
+  const closeCourseMenu = useCallback(() => setCourseMenu(null), []);
+
+  const handleHighlightCourseConcepts = useCallback((video) => {
+    if (!video) return;
+    const ids = new Set(video.concept_path.map((cp) => cp.concept_id));
+    setHighlighted(ids);
+    setHlMode('course');
+    applyMeta(ids, understood, 'course');
+    setCourseMenu(null);
+  }, [understood, applyMeta]);
+
   const handleShowCourses = useCallback(() => {
     if (!menu) return;
     setSelectedConcept({ id: menu.nodeId, label: conceptLabelMap[menu.nodeId] ?? menu.nodeId });
@@ -516,7 +596,14 @@ export default function MathOntologyBoard() {
 
   return (
     <div className="board-root">
-      {/* ── Context menu (rendered outside ReactFlow to avoid z-index issues) ── */}
+      {/* ── Course card context menu ── */}
+      <CourseContextMenu
+        menu={courseMenu}
+        onHighlight={handleHighlightCourseConcepts}
+        onClose={closeCourseMenu}
+      />
+
+      {/* ── Node context menu ── */}
       <ContextMenu
         menu={menu}
         isUnderstood={menu ? understood.has(menu.nodeId) : false}
@@ -581,6 +668,7 @@ export default function MathOntologyBoard() {
           open={panelOpen}
           onToggle={() => setPanelOpen((v) => !v)}
           selectedConcept={selectedConcept}
+          onCourseContextMenu={handleCourseContextMenu}
         />
       </div>
     </div>
