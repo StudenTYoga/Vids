@@ -493,6 +493,38 @@
           "related_to": [
             "standard_deviation"
           ]
+        },
+        {
+          "id": "conditional_probability",
+          "name": "Conditional Probability",
+          "prerequisites": [
+            "probability"
+          ],
+          "applications": [
+            "medical testing",
+            "spam filtering",
+            "risk assessment"
+          ],
+          "related_to": [
+            "bayes_theorem",
+            "independence",
+            "probability"
+          ]
+        },
+        {
+          "id": "sample_space",
+          "name": "Sample Space and Events",
+          "prerequisites": [
+            "probability"
+          ],
+          "applications": [
+            "counting outcomes",
+            "probability calculations"
+          ],
+          "related_to": [
+            "probability",
+            "set_theory"
+          ]
         }
       ]
     },

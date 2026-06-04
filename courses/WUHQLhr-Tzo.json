@@ -1,0 +1,181 @@
+{
+  "video_id": "WUHQLhr-Tzo",
+  "url": "https://www.youtube.com/watch?v=WUHQLhr-Tzo",
+  "title": "【漫士】99%的人都会答错！为什么概率这么反直觉？",
+  "channel": "漫士沉思录 Meditation Math",
+  "language": "zh-CN",
+  "duration_sec": 992,
+  "published": "2024-01-01",
+  "ontology_ref": "k12_math_ontology.json",
+  "meta_concepts_touched": [
+    "quantity",
+    "relation"
+  ],
+  "concept_path": [
+    {
+      "order": 1,
+      "concept_id": "probability",
+      "time_sec": 0
+    },
+    {
+      "order": 2,
+      "concept_id": "sample_space",
+      "time_sec": 149
+    },
+    {
+      "order": 3,
+      "concept_id": "conditional_probability",
+      "time_sec": 397
+    },
+    {
+      "order": 4,
+      "concept_id": "mean",
+      "time_sec": 550
+    }
+  ],
+  "timestamps": [
+    {
+      "time": "0:00",
+      "time_sec": 0,
+      "concept_ids": [
+        "probability"
+      ],
+      "label": "三大概率悖論介紹：三門、檢查、辛普森",
+      "note": "開場介紹三門悖論、檢查悖論、辛普森悖論三個反直覺的概率問題。",
+      "verified": true
+    },
+    {
+      "time": "2:29",
+      "time_sec": 149,
+      "concept_ids": [
+        "probability",
+        "sample_space"
+      ],
+      "label": "三門悖論：基本事件分析",
+      "note": "用骰子類比說明「基本事件」的概念：必須枚舉所有等可能的基本結果才能正確計算概率。",
+      "verified": true
+    },
+    {
+      "time": "3:45",
+      "time_sec": 225,
+      "concept_ids": [
+        "probability",
+        "sample_space"
+      ],
+      "label": "三門悖論解析：換門概率為 2/3",
+      "note": "從三個等概率基本事件出發，分「選對」vs「選錯」兩類，證明換門中獎率是 2/3。",
+      "verified": true
+    },
+    {
+      "time": "5:14",
+      "time_sec": 314,
+      "concept_ids": [
+        "probability",
+        "sample_space"
+      ],
+      "label": "100扇門的直觀強化",
+      "note": "推廣到 100 扇門：主持人留下「蹊跷的23號門」，讓換門的直覺變得明顯。",
+      "verified": true
+    },
+    {
+      "time": "6:37",
+      "time_sec": 397,
+      "concept_ids": [
+        "conditional_probability",
+        "probability"
+      ],
+      "label": "檢查悖論：98%準確率試紙的陷阱",
+      "note": "癌症試紙準確率 98% 但陽性真正有病只有 13%，因為癌症基礎發病率只有 0.3%。",
+      "verified": true
+    },
+    {
+      "time": "7:25",
+      "time_sec": 445,
+      "concept_ids": [
+        "conditional_probability",
+        "probability",
+        "sample_space"
+      ],
+      "label": "基礎發病率與假陽性：貝葉斯思維",
+      "note": "從人群中隨機抽人再測試的二步結構，說明大量健康人的 2% 假陽性遠超真陽性。",
+      "verified": true
+    },
+    {
+      "time": "9:10",
+      "time_sec": 550,
+      "concept_ids": [
+        "conditional_probability",
+        "mean"
+      ],
+      "label": "辛普森悖論：大醫院整體治癒率反低",
+      "note": "每個科室大醫院都更好，但整體數據卻顯示大醫院差，因為大醫院收治的患者病情更重。",
+      "verified": true
+    },
+    {
+      "time": "11:20",
+      "time_sec": 680,
+      "concept_ids": [
+        "conditional_probability",
+        "probability"
+      ],
+      "label": "核心洞見：樣本進場的隱蔽篩選",
+      "note": "三個悖論的共同根源：進入統計場景的樣本經過了不均等的篩選，頻率統計因此失真。",
+      "verified": true
+    },
+    {
+      "time": "12:31",
+      "time_sec": 751,
+      "concept_ids": [
+        "conditional_probability",
+        "probability"
+      ],
+      "label": "現實案例：高鐵、民調、幸存者偏差",
+      "note": "高鐵買票調查、1936年電話民調、二戰飛機彈孔分析，都是忽略場景篩選導致的錯誤結論。",
+      "verified": true
+    },
+    {
+      "time": "15:14",
+      "time_sec": 914,
+      "concept_ids": [
+        "conditional_probability"
+      ],
+      "label": "相親場景：顏值與性格的虛假負相關",
+      "note": "顏值好性格也好的人早已在相親之外找到對象，導致相親樣本中出現虛假的負相關。",
+      "verified": true
+    },
+    {
+      "time": "15:58",
+      "time_sec": 958,
+      "concept_ids": [
+        "probability",
+        "conditional_probability"
+      ],
+      "label": "結語：面對數據要反思樣本篩選偏差",
+      "note": "數據不等於真相，統計前必須問：樣本進入場景的機會是否均等？",
+      "verified": true
+    }
+  ],
+  "cross_domain": [
+    {
+      "concept": "conditional_probability",
+      "domain": "medicine",
+      "description": "Cancer screening false positives depend on base rate of disease",
+      "note": "The paradox of high-accuracy tests producing mostly false positives when disease is rare."
+    },
+    {
+      "concept": "conditional_probability",
+      "domain": "social_science",
+      "description": "Simpson's paradox in hospital success rate data",
+      "note": "Aggregated statistics reverse direction due to confounding variable (patient severity)."
+    }
+  ],
+  "key_arguments": [
+    "所有三個悖論的根源相同：進入統計場景的樣本經過了隱蔽的不均等篩選，使頻率計算失真。",
+    "三門悖論：必須在「基本事件」層面分析概率，換門的那扇門背後包含兩個基本事件。",
+    "檢查悖論：當疾病基礎發病率遠低於試紙誤判率時，陽性結果主要來自健康人的假陽性。",
+    "辛普森悖論：混淆變數（病情嚴重程度）導致分組數據與整體數據方向相反。",
+    "面對數據的正確姿勢：在計算概率之前，先問「樣本進入這個場景的機會是否均等」。"
+  ],
+  "source_notes": "Subtitles via DownSub (SRT, Chinese). 467 segments. Ontology: k12_math_ontology.json. New concepts added: conditional_probability, sample_space.",
+  "verified": true
+}

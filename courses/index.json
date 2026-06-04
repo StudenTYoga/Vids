@@ -2,58 +2,77 @@
   "index_version": "1.1",
   "ontology_ref": "../k12_math_ontology.json",
   "videos": [
-    { "video_id": "PA8q159lfWY" },
-    { "video_id": "6tT0PN7E2GM" }
+    {
+      "video_id": "PA8q159lfWY"
+    },
+    {
+      "video_id": "6tT0PN7E2GM"
+    },
+    {
+      "video_id": "WUHQLhr-Tzo"
+    }
   ],
   "concept_coverage": {
-    "spatial_reasoning": [
-      "PA8q159lfWY"
-    ],
-    "multiplication": [
-      "PA8q159lfWY",
+    "abstraction_algebra": [
       "6tT0PN7E2GM"
-    ],
-    "cosine": [
-      "PA8q159lfWY"
-    ],
-    "structure": [
-      "PA8q159lfWY"
-    ],
-    "relation": [
-      "PA8q159lfWY"
     ],
     "addition": [
       "PA8q159lfWY"
     ],
+    "conditional_probability": [
+      "WUHQLhr-Tzo"
+    ],
     "coordinate_geometry": [
       "PA8q159lfWY"
     ],
-    "transformations": [
-      "PA8q159lfWY",
+    "cosine": [
+      "PA8q159lfWY"
+    ],
+    "exponential_functions": [
       "6tT0PN7E2GM"
     ],
     "geometric_series": [
       "6tT0PN7E2GM"
     ],
-    "exponential_functions": [
+    "integrals": [
       "6tT0PN7E2GM"
     ],
     "limits": [
       "6tT0PN7E2GM"
     ],
-    "abstraction_algebra": [
+    "mean": [
+      "WUHQLhr-Tzo"
+    ],
+    "multiplication": [
+      "6tT0PN7E2GM",
+      "PA8q159lfWY"
+    ],
+    "operator_algebra": [
       "6tT0PN7E2GM"
     ],
-    "vector_operations": [
-      "6tT0PN7E2GM"
+    "probability": [
+      "WUHQLhr-Tzo"
     ],
-    "integrals": [
-      "6tT0PN7E2GM"
+    "relation": [
+      "PA8q159lfWY"
+    ],
+    "sample_space": [
+      "WUHQLhr-Tzo"
+    ],
+    "spatial_reasoning": [
+      "PA8q159lfWY"
+    ],
+    "structure": [
+      "PA8q159lfWY"
     ],
     "taylor_series": [
       "6tT0PN7E2GM"
     ],
-    "operator_algebra": [
+    "transformations": [
+      "6tT0PN7E2GM",
+      "PA8q159lfWY"
+    ],
+    "vector_operations": [
       "6tT0PN7E2GM"
     ]
   }
