@@ -13,6 +13,17 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import ontologyData  from '../../k12_math_ontology.json';
 import coursesIndex  from '../../courses/index.json';
+
+const courseFiles = import.meta.glob('../../courses/*.json', { eager: true });
+const _allCourses = Object.fromEntries(
+  Object.values(courseFiles)
+    .map((m) => m.default)
+    .filter((c) => c?.video_id)
+    .map((c) => [c.video_id, c])
+);
+const courseById = Object.fromEntries(
+  coursesIndex.videos.map(({ video_id }) => [video_id, _allCourses[video_id]]).filter(([, v]) => v)
+);
 import './MathOntologyBoard.css';
 
 function fmtDuration(sec) {
@@ -281,9 +292,7 @@ function SidePanel({ open, onToggle, selectedConcept, onCourseContextMenu }) {
   const courses = useMemo(() => {
     if (!selectedConcept) return [];
     const ids = coursesIndex.concept_coverage[selectedConcept.id] ?? [];
-    return ids
-      .map((vid) => coursesIndex.videos.find((v) => v.video_id === vid))
-      .filter(Boolean);
+    return ids.map((vid) => courseById[vid]).filter(Boolean);
   }, [selectedConcept]);
 
   return (

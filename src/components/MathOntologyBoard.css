@@ -437,6 +437,17 @@
   color: #cffafe;
 }
 
+/* ─── Concept node: course highlight ────────────────────────── */
+.concept-node--hl-course {
+  border-color: #a855f7 !important;
+  background: #160d26;
+  box-shadow: 0 0 0 2px #a855f7, 0 0 16px rgba(168, 85, 247, 0.35) !important;
+}
+
+.concept-node--hl-course .concept-node__name {
+  color: #e9d5ff;
+}
+
 /* ─── Concept node: understood ───────────────────────────────── */
 .concept-node--understood {
   background: #0f2518;
