@@ -76,7 +76,7 @@ function getPrereqChain(startId, prereqMap) {
 }
 
 // ─── Context menu ─────────────────────────────────────────────
-function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onShowCourses, onToggleUnderstood, onClose }) {
+function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onShowCourses, onToggleUnderstood, onAskAI, onClose }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -133,6 +133,10 @@ function ContextMenu({ menu, isUnderstood, onHighlight, onHighlightRelated, onSh
       >
         <span className="ctx-menu__icon">{isUnderstood ? '✅' : '⬜'}</span>
         {isUnderstood ? 'Unmark as understood' : 'Mark as understood'}
+      </button>
+      <button className="ctx-menu__item" onClick={onAskAI}>
+        <span className="ctx-menu__icon">🤖</span>
+        Ask AI
       </button>
     </div>
   );
@@ -595,6 +599,16 @@ export default function MathOntologyBoard() {
     setMenu(null);
   }, [menu, understood, highlighted, hlMode, applyMeta]);
 
+  const handleAskAI = useCallback(() => {
+    if (!menu) return;
+    const understoodNames = [...understood].map((id) => conceptLabelMap[id]).filter(Boolean);
+    const targetName = conceptLabelMap[menu.nodeId] ?? menu.nodeId;
+    const understoodPart = understoodNames.length > 0 ? understoodNames.join(', ') : 'none';
+    const prompt = `With understood concepts: ${understoodPart} — how should I learn ${targetName}?`;
+    navigator.clipboard.writeText(prompt);
+    setMenu(null);
+  }, [menu, understood, conceptLabelMap]);
+
   return (
     <div className="board-root">
       {/* ── Course card context menu ── */}
@@ -612,6 +626,7 @@ export default function MathOntologyBoard() {
         onHighlightRelated={handleHighlightRelated}
         onShowCourses={handleShowCourses}
         onToggleUnderstood={handleToggleUnderstood}
+        onAskAI={handleAskAI}
         onClose={closeMenu}
       />
 
