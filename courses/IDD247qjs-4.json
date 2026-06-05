@@ -1,0 +1,193 @@
+{
+  "video_id": "IDD247qjs-4",
+  "url": "https://www.youtube.com/watch?v=IDD247qjs-4",
+  "title": "【漫士】一个案例教会你(几乎)所有组合数学思想",
+  "channel": "漫士沉思录 Meditation Math",
+  "language": "zh-CN",
+  "duration_sec": 1491,
+  "published": "2024-01-01",
+  "ontology_ref": "k12_math_ontology.json",
+  "meta_concepts_touched": [
+    "quantity",
+    "structure",
+    "relation"
+  ],
+  "concept_path": [
+    {
+      "order": 1,
+      "concept_id": "combinatorics",
+      "time_sec": 1
+    },
+    {
+      "order": 2,
+      "concept_id": "recursion",
+      "time_sec": 105
+    },
+    {
+      "order": 3,
+      "concept_id": "multiplication",
+      "time_sec": 294
+    },
+    {
+      "order": 4,
+      "concept_id": "exponential_functions",
+      "time_sec": 594
+    },
+    {
+      "order": 5,
+      "concept_id": "sequences_series",
+      "time_sec": 770
+    },
+    {
+      "order": 6,
+      "concept_id": "geometric_series",
+      "time_sec": 860
+    }
+  ],
+  "timestamps": [
+    {
+      "time": "0:01",
+      "time_sec": 1,
+      "concept_ids": [
+        "combinatorics"
+      ],
+      "label": "格點路線問題：從原點走到 (m,n) 有幾種路線？",
+      "note": "介紹只能向右和向上的格點路線計數，作為貫穿全片的核心案例。",
+      "verified": true
+    },
+    {
+      "time": "1:45",
+      "time_sec": 105,
+      "concept_ids": [
+        "recursion",
+        "combinatorics"
+      ],
+      "label": "動態規劃：狀態轉移方程遞推格點路線數",
+      "note": "到達任意格點的路線數 = 左方格點數 + 下方格點數，遞推填表即為動態規劃。",
+      "verified": true
+    },
+    {
+      "time": "4:19",
+      "time_sec": 259,
+      "concept_ids": [
+        "combinatorics",
+        "recursion"
+      ],
+      "label": "楊輝三角：格點路線數與二項式係數的同構",
+      "note": "無限網格旋轉後恰好是楊輝三角，遞推規則完全一致，揭示路線數與組合數的深層聯繫。",
+      "verified": true
+    },
+    {
+      "time": "4:54",
+      "time_sec": 294,
+      "concept_ids": [
+        "combinatorics",
+        "multiplication"
+      ],
+      "label": "排列組合：水果排列推導組合數公式",
+      "note": "以苹果+橘子排列為例，用乘法原理和消除重複的思路推導 C(n,m) = n! / (m!(n-m)!) 公式。",
+      "verified": true
+    },
+    {
+      "time": "8:12",
+      "time_sec": 492,
+      "concept_ids": [
+        "combinatorics",
+        "recursion"
+      ],
+      "label": "路線 ↔ 水果序列一一對應，證明恆等式",
+      "note": "苹果=往右、橘子=往上，建立路線與水果序列的一一對應，從兩個方向計算同一問題從而證明組合恆等式。",
+      "verified": true
+    },
+    {
+      "time": "9:54",
+      "time_sec": 594,
+      "concept_ids": [
+        "combinatorics",
+        "exponential_functions"
+      ],
+      "label": "母函數：二項式展開解釋路線計數",
+      "note": "(1+x)^n 的展開中選 1 或 x 的過程等同於格點路線，母函數天然融合乘法原理與加法原理。",
+      "verified": true
+    },
+    {
+      "time": "12:50",
+      "time_sec": 770,
+      "concept_ids": [
+        "sequences_series",
+        "recursion"
+      ],
+      "label": "斜線求和得費波那契數列",
+      "note": "依 2x+y=n 的斜線分類格點，各類路線數之和恰好是費波那契數列，原因是每步使類別增加 1 或 2。",
+      "verified": true
+    },
+    {
+      "time": "14:20",
+      "time_sec": 860,
+      "concept_ids": [
+        "sequences_series",
+        "recursion",
+        "geometric_series"
+      ],
+      "label": "母函數求費波那契通項公式",
+      "note": "設 F(x) = Σ aₙxⁿ，利用遞推列方程解出 F(x) = 1/(1-x-x²)，再做部分分式展開得通項公式（含黃金比例）。",
+      "verified": true
+    },
+    {
+      "time": "16:26",
+      "time_sec": 986,
+      "concept_ids": [
+        "combinatorics",
+        "recursion"
+      ],
+      "label": "上半區問題：限制路線不進危險區",
+      "note": "從 (0,0) 到 (n,n) 且不越過 y=x 的路線數，先用鏡像翻折法得到 C(2n,n) - C(2n,n-1)。",
+      "verified": true
+    },
+    {
+      "time": "18:50",
+      "time_sec": 1130,
+      "concept_ids": [
+        "recursion",
+        "combinatorics"
+      ],
+      "label": "母函數推導卡特蘭數遞推與通項",
+      "note": "用「第一次觸及分界線在 (k,k)」分類，建立遞推式 aₙ = Σ aₖ₋₁·aₙ₋ₖ，解方程得 aₙ = C(2n,n)/(n+1)。",
+      "verified": true
+    },
+    {
+      "time": "22:54",
+      "time_sec": 1374,
+      "concept_ids": [
+        "combinatorics",
+        "recursion"
+      ],
+      "label": "卡特蘭數的多種等價問題",
+      "note": "凸多邊形三角剖分、堆疊出入序列、二叉樹計數均滿足相同遞推式，共享卡特蘭數結構。",
+      "verified": true
+    }
+  ],
+  "cross_domain": [
+    {
+      "concept": "recursion",
+      "domain": "computer_science",
+      "description": "Dynamic programming: state compression and transition equations",
+      "note": "The grid path recurrence is the canonical example of dynamic programming in algorithm design."
+    },
+    {
+      "concept": "combinatorics",
+      "domain": "computer_science",
+      "description": "Catalan numbers appear in stack permutations, binary trees, polygon triangulations",
+      "note": "Shared recursive structure across domains — all decompose into two independent sub-problems."
+    }
+  ],
+  "key_arguments": [
+    "動態規劃的本質是狀態壓縮與無後效性：到達每個格點的路線數只取決於相鄰兩點，歷史路徑不重要。",
+    "組合數學的核心技巧是「雙重計數」：從兩個不同角度計算同一集合的大小，兩結果必然相等，從而證明恆等式。",
+    "母函數是把組合遞推關係壓縮到函數方程的利器，多項式乘法天然對應乘法原理，合併同類項對應加法原理。",
+    "費波那契數列的通項公式可由母函數 F(x) = 1/(1-x-x²) 的部分分式展開得到，係數含黃金比例。",
+    "卡特蘭數 Cₙ = C(2n,n)/(n+1) 統一了格點上半區、凸多邊形三角剖分、堆疊序列、二叉樹計數等看似無關的問題。"
+  ],
+  "source_notes": "Subtitles via DownSub (SRT, Chinese). 715 segments. Ontology: k12_math_ontology.json. New concepts added: combinatorics, sequences_series, recursion.",
+  "verified": true
+}

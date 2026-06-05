@@ -16,6 +16,9 @@
     },
     {
       "video_id": "Pkn1G1AAhxE"
+    },
+    {
+      "video_id": "IDD247qjs-4"
     }
   ],
   "concept_coverage": {
@@ -24,6 +27,9 @@
     ],
     "addition": [
       "PA8q159lfWY"
+    ],
+    "combinatorics": [
+      "IDD247qjs-4"
     ],
     "conditional_probability": [
       "WUHQLhr-Tzo"
@@ -40,13 +46,15 @@
     ],
     "exponential_functions": [
       "6tT0PN7E2GM",
-      "AcGOrZNKUg8"
+      "AcGOrZNKUg8",
+      "IDD247qjs-4"
     ],
     "fractions": [
       "Pkn1G1AAhxE"
     ],
     "geometric_series": [
-      "6tT0PN7E2GM"
+      "6tT0PN7E2GM",
+      "IDD247qjs-4"
     ],
     "integrals": [
       "6tT0PN7E2GM"
@@ -67,6 +75,7 @@
     "multiplication": [
       "6tT0PN7E2GM",
       "AcGOrZNKUg8",
+      "IDD247qjs-4",
       "PA8q159lfWY"
     ],
     "normal_distribution": [
@@ -83,11 +92,17 @@
       "AcGOrZNKUg8",
       "Pkn1G1AAhxE"
     ],
+    "recursion": [
+      "IDD247qjs-4"
+    ],
     "relation": [
       "PA8q159lfWY"
     ],
     "sample_space": [
       "WUHQLhr-Tzo"
+    ],
+    "sequences_series": [
+      "IDD247qjs-4"
     ],
     "spatial_reasoning": [
       "PA8q159lfWY"
