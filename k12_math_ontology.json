@@ -336,6 +336,24 @@
             "limits",
             "operator_algebra"
           ]
+        },
+        {
+          "id": "logarithms",
+          "name": "Logarithms",
+          "prerequisites": [
+            "exponential_functions",
+            "multiplication"
+          ],
+          "applications": [
+            "exponential equations",
+            "data scaling",
+            "pH scale",
+            "Richter scale"
+          ],
+          "related_to": [
+            "exponential_functions",
+            "geometric_series"
+          ]
         }
       ]
     },
@@ -404,6 +422,42 @@
             "translation",
             "scaling",
             "symmetry"
+          ]
+        },
+        {
+          "id": "vectors",
+          "name": "Vectors",
+          "prerequisites": [
+            "coordinate_geometry"
+          ],
+          "applications": [
+            "physics",
+            "3D graphics",
+            "navigation"
+          ],
+          "related_to": [
+            "coordinate_geometry",
+            "transformations",
+            "linear_functions"
+          ]
+        },
+        {
+          "id": "conics",
+          "name": "Conic Sections",
+          "prerequisites": [
+            "coordinate_geometry",
+            "quadratic_functions"
+          ],
+          "applications": [
+            "astronomy",
+            "optics",
+            "architecture"
+          ],
+          "related_to": [
+            "circles",
+            "ellipse",
+            "parabola",
+            "transformations"
           ]
         }
       ]
@@ -524,6 +578,25 @@
           "related_to": [
             "probability",
             "set_theory"
+          ]
+        },
+        {
+          "id": "normal_distribution",
+          "name": "Normal Distribution",
+          "prerequisites": [
+            "mean",
+            "variance",
+            "probability"
+          ],
+          "applications": [
+            "statistics",
+            "natural sciences",
+            "test scores"
+          ],
+          "related_to": [
+            "mean",
+            "variance",
+            "central_limit_theorem"
           ]
         }
       ]

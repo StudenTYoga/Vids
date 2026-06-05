@@ -1,0 +1,194 @@
+{
+  "video_id": "AcGOrZNKUg8",
+  "url": "https://www.youtube.com/watch?v=AcGOrZNKUg8",
+  "title": "【漫士】世界是对数的……吗？为什么？",
+  "channel": "漫士沉思录 Meditation Math",
+  "language": "zh-CN",
+  "duration_sec": 897,
+  "published": "2024-01-01",
+  "ontology_ref": "k12_math_ontology.json",
+  "meta_concepts_touched": [
+    "quantity",
+    "relation",
+    "structure"
+  ],
+  "concept_path": [
+    {
+      "order": 1,
+      "concept_id": "logarithms",
+      "time_sec": 0
+    },
+    {
+      "order": 2,
+      "concept_id": "probability",
+      "time_sec": 0
+    },
+    {
+      "order": 3,
+      "concept_id": "ratio",
+      "time_sec": 149
+    },
+    {
+      "order": 4,
+      "concept_id": "normal_distribution",
+      "time_sec": 250
+    },
+    {
+      "order": 5,
+      "concept_id": "limits",
+      "time_sec": 360
+    },
+    {
+      "order": 6,
+      "concept_id": "multiplication",
+      "time_sec": 525
+    },
+    {
+      "order": 7,
+      "concept_id": "exponential_functions",
+      "time_sec": 525
+    }
+  ],
+  "timestamps": [
+    {
+      "time": "0:00",
+      "time_sec": 0,
+      "concept_ids": [
+        "logarithms",
+        "probability"
+      ],
+      "label": "開場：本福特定律與對數均勻分布之謎",
+      "note": "提問：為何財富、人口、亮度等真實數據取對數後接近均勻分布，從而遵循本福特定律？",
+      "verified": true
+    },
+    {
+      "time": "0:54",
+      "time_sec": 54,
+      "concept_ids": [
+        "logarithms",
+        "probability"
+      ],
+      "label": "本福特定律：對數坐標下首位數字的分布",
+      "note": "用世界各國人口的直方圖說明：在對數坐標下分布均勻，1 開頭的區間天然更寬，佔比 ~30%。",
+      "verified": true
+    },
+    {
+      "time": "2:29",
+      "time_sec": 149,
+      "concept_ids": [
+        "logarithms",
+        "ratio"
+      ],
+      "label": "log₁₀(2)≈0.301：首位數 1 的優勢來源",
+      "note": "直接計算各首位數字對應的對數區間長度，說明 1 的區間 log₁₀(2) 最寬，決定 30% 的佔比。",
+      "verified": true
+    },
+    {
+      "time": "4:10",
+      "time_sec": 250,
+      "concept_ids": [
+        "normal_distribution",
+        "probability"
+      ],
+      "label": "輕尾 vs 長尾：兩大分布家族的對比",
+      "note": "以身高（輕尾）vs 財富（長尾）為例，介紹正態分布族與長尾分布族的根本差異。",
+      "verified": true
+    },
+    {
+      "time": "6:00",
+      "time_sec": 360,
+      "concept_ids": [
+        "probability",
+        "limits"
+      ],
+      "label": "長尾分布的數學定義：條件概率不趨零",
+      "note": "嚴格定義：已知 x > t，x > t+a 的概率趨向 1（長尾）vs 趨向 0（輕尾）。",
+      "verified": true
+    },
+    {
+      "time": "8:45",
+      "time_sec": 525,
+      "concept_ids": [
+        "multiplication",
+        "exponential_functions"
+      ],
+      "label": "長尾分布的成因：累積乘法過程",
+      "note": "財富靠收益率相乘、人口靠出生率相乘——凡是「變化量正比於已有量」的過程都產生長尾分布。",
+      "verified": true
+    },
+    {
+      "time": "10:07",
+      "time_sec": 607,
+      "concept_ids": [
+        "normal_distribution",
+        "multiplication",
+        "logarithms"
+      ],
+      "label": "對數正態分布：乘法遊戲 vs 加法遊戲",
+      "note": "中心極限定理對應加法 → 正態；獨立變量乘積取對數後是加法 → 對數正態（lognormal）。",
+      "verified": true
+    },
+    {
+      "time": "11:42",
+      "time_sec": 702,
+      "concept_ids": [
+        "logarithms",
+        "normal_distribution"
+      ],
+      "label": "結論：乘法累積 → 對數均勻 → 本福特定律",
+      "note": "整合前述推導：自然界長尾分布源於乘法累積，對數坐標下近似均勻，從而導致本福特定律。",
+      "verified": true
+    },
+    {
+      "time": "12:37",
+      "time_sec": 757,
+      "concept_ids": [
+        "logarithms",
+        "ratio"
+      ],
+      "label": "韋伯-費歇納定律：人類感知也是對數的",
+      "note": "感知刺激增量必須達到已有量的固定比例才能被察覺，說明人類感知系統本質上是對數尺度。",
+      "verified": true
+    },
+    {
+      "time": "13:51",
+      "time_sec": 831,
+      "concept_ids": [
+        "normal_distribution",
+        "probability"
+      ],
+      "label": "神經元放電頻率也服從對數正態分布",
+      "note": "大腦神經元放電頻率、突觸強度均服從對數正態，暗示感知的對數特性源於神經網絡的乘法傳導。",
+      "verified": true
+    }
+  ],
+  "cross_domain": [
+    {
+      "concept": "logarithms",
+      "domain": "data_science",
+      "description": "Benford's Law: first-digit frequency in real-world datasets",
+      "note": "Log-uniform distributions explain why ~30% of real-world numbers start with 1."
+    },
+    {
+      "concept": "normal_distribution",
+      "domain": "neuroscience",
+      "description": "Neuron firing rates follow log-normal distribution",
+      "note": "Multiplicative propagation in neural networks produces log-normal activation patterns."
+    },
+    {
+      "concept": "logarithms",
+      "domain": "psychology",
+      "description": "Weber-Fechner Law: human perception is logarithmic",
+      "note": "Sensory thresholds are proportional to existing stimulus intensity, producing logarithmic perception scales."
+    }
+  ],
+  "key_arguments": [
+    "本福特定律的核心：若數據在對數坐標下分布均勻（對數均勻），則首位數 1 對應的區間 log₁₀(2)≈30% 最寬，必然最多見。",
+    "長尾分布的成因：自然界中「變化量正比於已有量」的乘法累積過程（財富、人口、亮度）產生對數正態分布。",
+    "對數正態 = 乘法版中心極限定理：獨立隨機變量之乘積取對數後是加和，由中心極限定理趨向正態。",
+    "輕尾（正態）vs 長尾（對數正態）：前者來自加法累積，後者來自乘法累積——兩者性質截然不同。",
+    "人類感知（韋伯-費歇納定律）天然是對數尺度，恰好適配自然界普遍存在的對數正態分布。"
+  ],
+  "source_notes": "Subtitles via DownSub (SRT, Chinese). 432 segments. Ontology: k12_math_ontology.json. New concepts added: logarithms, normal_distribution.",
+  "verified": true
+}

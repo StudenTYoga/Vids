@@ -1,0 +1,195 @@
+{
+  "video_id": "Pkn1G1AAhxE",
+  "url": "https://www.youtube.com/watch?v=Pkn1G1AAhxE",
+  "title": "【漫士】你看这个世界的每一眼，都在进行着深刻的运算",
+  "channel": "漫士沉思录 Meditation Math",
+  "language": "zh-TW",
+  "duration_sec": 1173,
+  "published": "2024-01-01",
+  "ontology_ref": "k12_math_ontology.json",
+  "meta_concepts_touched": [
+    "relation",
+    "transformation",
+    "structure"
+  ],
+  "concept_path": [
+    {
+      "order": 1,
+      "concept_id": "coordinate_geometry",
+      "time_sec": 0
+    },
+    {
+      "order": 2,
+      "concept_id": "transformations",
+      "time_sec": 0
+    },
+    {
+      "order": 3,
+      "concept_id": "vectors",
+      "time_sec": 49
+    },
+    {
+      "order": 4,
+      "concept_id": "linear_functions",
+      "time_sec": 261
+    },
+    {
+      "order": 5,
+      "concept_id": "ratio",
+      "time_sec": 537
+    },
+    {
+      "order": 6,
+      "concept_id": "fractions",
+      "time_sec": 715
+    },
+    {
+      "order": 7,
+      "concept_id": "conics",
+      "time_sec": 961
+    }
+  ],
+  "timestamps": [
+    {
+      "time": "0:00",
+      "time_sec": 0,
+      "concept_ids": [
+        "coordinate_geometry",
+        "transformations"
+      ],
+      "label": "開場：x·sin(1/x) 的透視解釋",
+      "note": "微積分中在原點無窮震盪的函數，其實正是三維空間中兩條平行正弦曲線的投影。",
+      "verified": true
+    },
+    {
+      "time": "0:49",
+      "time_sec": 49,
+      "concept_ids": [
+        "coordinate_geometry",
+        "vectors",
+        "transformations"
+      ],
+      "label": "投影基本公式：(X,Y,Z) → (X/Z, Y/Z)",
+      "note": "推導透視投影的第一性原理：畫布上的點坐標 = 物體坐標除以深度 Z，得到 (X/Z, Y/Z)。",
+      "verified": true
+    },
+    {
+      "time": "2:54",
+      "time_sec": 174,
+      "concept_ids": [
+        "coordinate_geometry",
+        "transformations"
+      ],
+      "label": "近大遠小與投影不可逆性",
+      "note": "同一投影點對應三維空間中一條射線上的無窮多點，說明投影是多對一的不可逆映射。",
+      "verified": true
+    },
+    {
+      "time": "4:21",
+      "time_sec": 261,
+      "concept_ids": [
+        "coordinate_geometry",
+        "vectors",
+        "linear_functions"
+      ],
+      "label": "直線的投影：消失點的數學推導",
+      "note": "三維直線 P₀ + tD 投影後，當 t→∞ 收斂到固定點 (A/C, B/C)，即為消失點。",
+      "verified": true
+    },
+    {
+      "time": "7:22",
+      "time_sec": 442,
+      "concept_ids": [
+        "coordinate_geometry",
+        "transformations"
+      ],
+      "label": "單點、兩點、三點透視的幾何條件",
+      "note": "長方體的各組棱若平行於畫布則不產生消失點；有幾組棱不平行畫布就有幾個消失點。",
+      "verified": true
+    },
+    {
+      "time": "8:57",
+      "time_sec": 537,
+      "concept_ids": [
+        "coordinate_geometry",
+        "ratio"
+      ],
+      "label": "鐵軌枕木問題：調和級數與平方倒數收縮",
+      "note": "等間距枕木在畫面上到地平線的距離以調和級數 1/n 收縮，相鄰間距以 1/n² 衰減。",
+      "verified": true
+    },
+    {
+      "time": "11:55",
+      "time_sec": 715,
+      "concept_ids": [
+        "coordinate_geometry",
+        "fractions"
+      ],
+      "label": "樹林即有理數：最簡分數 p/q 的幾何投影",
+      "note": "無限網格樹林的投影，恰好對應在 p/q 位置上高度為 1/p 的線段，呈現全體正有理數的幾何圖景。",
+      "verified": true
+    },
+    {
+      "time": "14:52",
+      "time_sec": 892,
+      "concept_ids": [
+        "coordinate_geometry",
+        "fractions"
+      ],
+      "label": "三維整點投影 = 二維有理點全集",
+      "note": "三維整點 (x,y,z) 投影得 (x/z, y/z)，恰好遍歷所有有理點，球的半徑直觀顯示分數的簡潔程度。",
+      "verified": true
+    },
+    {
+      "time": "16:01",
+      "time_sec": 961,
+      "concept_ids": [
+        "conics",
+        "transformations"
+      ],
+      "label": "圓的投影是橢圓：丹德林雙球法的逆用",
+      "note": "斜切圓錐得橢圓（圓錐曲線），逆用此事實：對圓錐做 Y 方向壓縮，橢圓→圓，圓→橢圓，證明圓投影為橢圓。",
+      "verified": true
+    },
+    {
+      "time": "18:42",
+      "time_sec": 1122,
+      "concept_ids": [
+        "conics",
+        "coordinate_geometry"
+      ],
+      "label": "結語：橢圓中心偏移與透視的數學之美",
+      "note": "圓投影成橢圓後，橢圓中心會偏離畫面中心，這些幾何事實都藏在日常可見的地板和樹林之中。",
+      "verified": true
+    }
+  ],
+  "cross_domain": [
+    {
+      "concept": "transformations",
+      "domain": "art",
+      "description": "Renaissance perspective drawing: single-point, two-point, three-point perspective",
+      "note": "Mathematical projection formulas explain and unify all rules of perspective in painting."
+    },
+    {
+      "concept": "fractions",
+      "domain": "number_theory",
+      "description": "Forest of trees visualizes all positive rationals via Stern-Brocot structure",
+      "note": "Each tree at position p/q with height 1/p; reduced fractions are unobstructed — a geometric proof of rational density."
+    },
+    {
+      "concept": "conics",
+      "domain": "optics",
+      "description": "Circle projects to ellipse; Dandelin sphere argument",
+      "note": "The classic proof that oblique conic sections are ellipses becomes a tool for understanding perspective distortion."
+    }
+  ],
+  "key_arguments": [
+    "透視投影的第一性原理：畫布坐標 = (X/Z, Y/Z)，由此可推導透視中的一切現象。",
+    "消失點的嚴格定義：一組平行線在投影後，當參數 t→∞ 收斂到共同點 (A/C, B/C)。",
+    "鐵軌枕木的收縮規律：等間距物體在畫面中以調和級數 1/n 趨近地平線，間距以 1/n² 衰減。",
+    "無限樹林 = 有理數全集：三維整點網格的透視投影，恰好遍歷二維平面上的所有有理點，球半徑直觀反映分數的複雜度。",
+    "圓投影成橢圓（而非正圓）：利用丹德林雙球法的逆向思維，通過 Y 方向壓縮嚴格證明。"
+  ],
+  "source_notes": "Subtitles via Whisper (local transcription, zh-TW). 404 segments. Ontology: k12_math_ontology.json. New concepts added: vectors, conics.",
+  "verified": true
+}

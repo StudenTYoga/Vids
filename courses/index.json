@@ -10,6 +10,12 @@
     },
     {
       "video_id": "WUHQLhr-Tzo"
+    },
+    {
+      "video_id": "AcGOrZNKUg8"
+    },
+    {
+      "video_id": "Pkn1G1AAhxE"
     }
   ],
   "concept_coverage": {
@@ -22,14 +28,22 @@
     "conditional_probability": [
       "WUHQLhr-Tzo"
     ],
+    "conics": [
+      "Pkn1G1AAhxE"
+    ],
     "coordinate_geometry": [
-      "PA8q159lfWY"
+      "PA8q159lfWY",
+      "Pkn1G1AAhxE"
     ],
     "cosine": [
       "PA8q159lfWY"
     ],
     "exponential_functions": [
-      "6tT0PN7E2GM"
+      "6tT0PN7E2GM",
+      "AcGOrZNKUg8"
+    ],
+    "fractions": [
+      "Pkn1G1AAhxE"
     ],
     "geometric_series": [
       "6tT0PN7E2GM"
@@ -38,20 +52,36 @@
       "6tT0PN7E2GM"
     ],
     "limits": [
-      "6tT0PN7E2GM"
+      "6tT0PN7E2GM",
+      "AcGOrZNKUg8"
+    ],
+    "linear_functions": [
+      "Pkn1G1AAhxE"
+    ],
+    "logarithms": [
+      "AcGOrZNKUg8"
     ],
     "mean": [
       "WUHQLhr-Tzo"
     ],
     "multiplication": [
       "6tT0PN7E2GM",
+      "AcGOrZNKUg8",
       "PA8q159lfWY"
+    ],
+    "normal_distribution": [
+      "AcGOrZNKUg8"
     ],
     "operator_algebra": [
       "6tT0PN7E2GM"
     ],
     "probability": [
+      "AcGOrZNKUg8",
       "WUHQLhr-Tzo"
+    ],
+    "ratio": [
+      "AcGOrZNKUg8",
+      "Pkn1G1AAhxE"
     ],
     "relation": [
       "PA8q159lfWY"
@@ -70,10 +100,14 @@
     ],
     "transformations": [
       "6tT0PN7E2GM",
-      "PA8q159lfWY"
+      "PA8q159lfWY",
+      "Pkn1G1AAhxE"
     ],
     "vector_operations": [
       "6tT0PN7E2GM"
+    ],
+    "vectors": [
+      "Pkn1G1AAhxE"
     ]
   }
 }
