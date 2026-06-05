@@ -235,6 +235,44 @@
             "proportion",
             "slope"
           ]
+        },
+        {
+          "id": "combinatorics",
+          "name": "Combinatorics and Counting",
+          "prerequisites": [
+            "multiplication",
+            "addition",
+            "natural_numbers"
+          ],
+          "applications": [
+            "probability",
+            "algorithm design",
+            "puzzle solving"
+          ],
+          "related_to": [
+            "probability",
+            "factorial",
+            "permutations"
+          ]
+        },
+        {
+          "id": "sequences_series",
+          "name": "Sequences and Series",
+          "prerequisites": [
+            "addition",
+            "multiplication",
+            "pattern_recognition"
+          ],
+          "applications": [
+            "finance",
+            "algorithm analysis",
+            "physics"
+          ],
+          "related_to": [
+            "geometric_series",
+            "fibonacci",
+            "recursion"
+          ]
         }
       ]
     },
@@ -353,6 +391,24 @@
           "related_to": [
             "exponential_functions",
             "geometric_series"
+          ]
+        },
+        {
+          "id": "recursion",
+          "name": "Recursion and Recurrence Relations",
+          "prerequisites": [
+            "equations",
+            "sequences_series"
+          ],
+          "applications": [
+            "algorithm design",
+            "dynamic programming",
+            "fractals"
+          ],
+          "related_to": [
+            "sequences_series",
+            "functions",
+            "induction"
           ]
         }
       ]
