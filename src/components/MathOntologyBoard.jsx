@@ -212,6 +212,7 @@ function ConceptNode({ data }) {
         data.isHighlighted && data.hlMode === 'related'  ? 'concept-node--hl-related'  : '',
         data.isHighlighted && data.hlMode === 'course'   ? 'concept-node--hl-course'   : '',
         data.isUnderstood                                ? 'concept-node--understood'  : '',
+        data.isBorder                                    ? 'concept-node--border'      : '',
       ].filter(Boolean).join(' ')}
       style={{ '--color': data.color }}
     >
@@ -451,7 +452,8 @@ function buildGraph(data, showRelated, understoodSet, highlightedSet, hlMode = n
 
 // ─── Main component ───────────────────────────────────────────
 export default function MathOntologyBoard() {
-  const [showRelated,     setShowRelated]     = useState(false);
+  const [showRelated,          setShowRelated]          = useState(false);
+  const [showKnowledgeBorder,  setShowKnowledgeBorder]  = useState(false);
   const [panelOpen,       setPanelOpen]       = useState(false);
   const [selectedConcept, setSelectedConcept] = useState(null); // { id, label }
   const [menu,            setMenu]            = useState(null);  // node context menu
@@ -515,6 +517,23 @@ export default function MathOntologyBoard() {
       )
     );
   }, [setNodes]);
+
+  // ── Knowledge border: patch isBorder whenever toggle or understood changes ──
+  useEffect(() => {
+    setNodes((nds) =>
+      nds.map((n) =>
+        n.type !== 'concept' ? n : {
+          ...n,
+          data: {
+            ...n.data,
+            isBorder: showKnowledgeBorder &&
+              !understood.has(n.id) &&
+              (prereqMap[n.id] ?? []).every((p) => understood.has(p)),
+          },
+        }
+      )
+    );
+  }, [showKnowledgeBorder, understood, prereqMap, setNodes]);
 
   // ── Toolbar toggle ──
   const handleToggle = useCallback((e) => {
@@ -637,6 +656,11 @@ export default function MathOntologyBoard() {
         <label className="toolbar__toggle">
           <input type="checkbox" checked={showRelated} onChange={handleToggle} />
           Show related connections
+        </label>
+
+        <label className="toolbar__toggle">
+          <input type="checkbox" checked={showKnowledgeBorder} onChange={(e) => setShowKnowledgeBorder(e.target.checked)} />
+          Show knowledge border
         </label>
 
         <div className="toolbar__legend">

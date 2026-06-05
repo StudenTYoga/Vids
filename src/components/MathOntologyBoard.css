@@ -448,6 +448,16 @@
   color: #e9d5ff;
 }
 
+/* ─── Concept node: knowledge border ────────────────────────── */
+.concept-node--border {
+  border-color: #facc15 !important;
+  box-shadow: 0 0 0 2px #facc15, 0 0 12px rgba(250, 204, 21, 0.3) !important;
+}
+
+.concept-node--border .concept-node__name {
+  color: #fef08a;
+}
+
 /* ─── Concept node: understood ───────────────────────────────── */
 .concept-node--understood {
   background: #0f2518;
