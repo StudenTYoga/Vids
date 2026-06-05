@@ -23,12 +23,13 @@
     "transformation"
   ],
   "concept_path": [
-    "spatial_reasoning",
-    "multiplication",
-    "cosine",
-    "coordinate_geometry",
-    "transformations",
-    "structure"
+    { "order": 1, "concept_id": "spatial_reasoning",   "time_sec": 0   },
+    { "order": 2, "concept_id": "multiplication",       "time_sec": 0   },
+    { "order": 3, "concept_id": "cosine",               "time_sec": 14  },
+    { "order": 4, "concept_id": "structure",            "time_sec": 35  },
+    { "order": 5, "concept_id": "addition",             "time_sec": 68  },
+    { "order": 6, "concept_id": "coordinate_geometry",  "time_sec": 401 },
+    { "order": 7, "concept_id": "transformations",      "time_sec": 434 }
   ],
   "timestamps": [
     {
