@@ -70,17 +70,9 @@ function saveUnderstood(set) {
   try { localStorage.setItem(UNDERSTOOD_KEY, JSON.stringify([...set])); } catch {}
 }
 
-// ─── Prerequisite chain traversal (BFS upward) ───────────────
+// ─── Prerequisite traversal (one level only) ──────────────────
 function getPrereqChain(startId, prereqMap) {
-  const result = new Set();
-  const queue  = [...(prereqMap[startId] ?? [])];
-  while (queue.length) {
-    const id = queue.shift();
-    if (result.has(id)) continue;
-    result.add(id);
-    (prereqMap[id] ?? []).forEach((pid) => queue.push(pid));
-  }
-  return result; // ancestors only, startId excluded
+  return new Set(prereqMap[startId] ?? []);
 }
 
 // ─── Context menu ─────────────────────────────────────────────
