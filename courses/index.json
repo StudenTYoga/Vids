@@ -19,6 +19,9 @@
     },
     {
       "video_id": "IDD247qjs-4"
+    },
+    {
+      "video_id": "N-KXStupwsc"
     }
   ],
   "concept_coverage": {
@@ -31,10 +34,14 @@
     "combinatorics": [
       "IDD247qjs-4"
     ],
+    "complex_numbers": [
+      "N-KXStupwsc"
+    ],
     "conditional_probability": [
       "WUHQLhr-Tzo"
     ],
     "conics": [
+      "N-KXStupwsc",
       "Pkn1G1AAhxE"
     ],
     "coordinate_geometry": [
@@ -42,7 +49,14 @@
       "Pkn1G1AAhxE"
     ],
     "cosine": [
+      "N-KXStupwsc",
       "PA8q159lfWY"
+    ],
+    "derivatives": [
+      "N-KXStupwsc"
+    ],
+    "equations": [
+      "N-KXStupwsc"
     ],
     "exponential_functions": [
       "6tT0PN7E2GM",
@@ -88,6 +102,9 @@
       "AcGOrZNKUg8",
       "WUHQLhr-Tzo"
     ],
+    "quadratic_functions": [
+      "N-KXStupwsc"
+    ],
     "ratio": [
       "AcGOrZNKUg8",
       "Pkn1G1AAhxE"
@@ -103,6 +120,9 @@
     ],
     "sequences_series": [
       "IDD247qjs-4"
+    ],
+    "sine": [
+      "N-KXStupwsc"
     ],
     "spatial_reasoning": [
       "PA8q159lfWY"

@@ -183,6 +183,24 @@
             "irrational_numbers",
             "continuity"
           ]
+        },
+        {
+          "id": "complex_numbers",
+          "name": "Complex Numbers",
+          "prerequisites": [
+            "real_numbers",
+            "quadratic_functions"
+          ],
+          "applications": [
+            "electrical engineering",
+            "signal processing",
+            "polynomial roots"
+          ],
+          "related_to": [
+            "real_numbers",
+            "quadratic_functions",
+            "trigonometry"
+          ]
         }
       ]
     },
