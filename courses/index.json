@@ -22,6 +22,9 @@
     },
     {
       "video_id": "N-KXStupwsc"
+    },
+    {
+      "video_id": "tsLMl8OmTCk"
     }
   ],
   "concept_coverage": {
@@ -42,15 +45,24 @@
     ],
     "conics": [
       "N-KXStupwsc",
-      "Pkn1G1AAhxE"
+      "Pkn1G1AAhxE",
+      "tsLMl8OmTCk"
     ],
     "coordinate_geometry": [
       "PA8q159lfWY",
-      "Pkn1G1AAhxE"
+      "Pkn1G1AAhxE",
+      "tsLMl8OmTCk"
     ],
     "cosine": [
       "N-KXStupwsc",
-      "PA8q159lfWY"
+      "PA8q159lfWY",
+      "tsLMl8OmTCk"
+    ],
+    "derivatives": [
+      "N-KXStupwsc"
+    ],
+    "equations": [
+      "N-KXStupwsc"
     ],
     "derivatives": [
       "N-KXStupwsc"
@@ -71,7 +83,8 @@
       "IDD247qjs-4"
     ],
     "integrals": [
-      "6tT0PN7E2GM"
+      "6tT0PN7E2GM",
+      "tsLMl8OmTCk"
     ],
     "limits": [
       "6tT0PN7E2GM",
@@ -93,7 +106,8 @@
       "PA8q159lfWY"
     ],
     "normal_distribution": [
-      "AcGOrZNKUg8"
+      "AcGOrZNKUg8",
+      "tsLMl8OmTCk"
     ],
     "operator_algebra": [
       "6tT0PN7E2GM"
@@ -107,7 +121,8 @@
     ],
     "ratio": [
       "AcGOrZNKUg8",
-      "Pkn1G1AAhxE"
+      "Pkn1G1AAhxE",
+      "tsLMl8OmTCk"
     ],
     "recursion": [
       "IDD247qjs-4"
@@ -122,10 +137,12 @@
       "IDD247qjs-4"
     ],
     "sine": [
-      "N-KXStupwsc"
+      "N-KXStupwsc",
+      "tsLMl8OmTCk"
     ],
     "spatial_reasoning": [
-      "PA8q159lfWY"
+      "PA8q159lfWY",
+      "tsLMl8OmTCk"
     ],
     "structure": [
       "PA8q159lfWY"
@@ -136,7 +153,11 @@
     "transformations": [
       "6tT0PN7E2GM",
       "PA8q159lfWY",
-      "Pkn1G1AAhxE"
+      "Pkn1G1AAhxE",
+      "tsLMl8OmTCk"
+    ],
+    "triangles": [
+      "tsLMl8OmTCk"
     ],
     "vector_operations": [
       "6tT0PN7E2GM"
