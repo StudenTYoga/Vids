@@ -1,0 +1,210 @@
+{
+  "video_id": "N-KXStupwsc",
+  "url": "https://www.youtube.com/watch?v=N-KXStupwsc",
+  "title": "500 years of NOT teaching THE CUBIC FORMULA. What is it they think you can't handle?",
+  "channel": "Mathologer",
+  "language": "en",
+  "duration_sec": 2102,
+  "published": "2019-01-01",
+  "ontology_ref": "k12_math_ontology.json",
+  "meta_concepts_touched": [
+    "quantity",
+    "structure",
+    "relation"
+  ],
+  "concept_path": [
+    {
+      "order": 1,
+      "concept_id": "equations",
+      "time_sec": 5
+    },
+    {
+      "order": 2,
+      "concept_id": "quadratic_functions",
+      "time_sec": 5
+    },
+    {
+      "order": 3,
+      "concept_id": "derivatives",
+      "time_sec": 608
+    },
+    {
+      "order": 4,
+      "concept_id": "conics",
+      "time_sec": 608
+    },
+    {
+      "order": 5,
+      "concept_id": "complex_numbers",
+      "time_sec": 1414
+    },
+    {
+      "order": 6,
+      "concept_id": "sine",
+      "time_sec": 1622
+    },
+    {
+      "order": 7,
+      "concept_id": "cosine",
+      "time_sec": 1622
+    }
+  ],
+  "timestamps": [
+    {
+      "time": "0:05",
+      "time_sec": 5,
+      "concept_ids": [
+        "equations",
+        "quadratic_functions"
+      ],
+      "label": "Opening: why isn't the cubic formula taught in school?",
+      "note": "Introduces the cubic formula and poses the central question: why do schools teach the quadratic formula but not the cubic?",
+      "verified": true
+    },
+    {
+      "time": "0:51",
+      "time_sec": 51,
+      "concept_ids": [
+        "equations",
+        "quadratic_functions"
+      ],
+      "label": "The simplified cubic x³ + px + q = 0 and its formula",
+      "note": "Pre-processing reduces any cubic to the depressed form x³ + px + q = 0; the resulting formula is much simpler than the general case.",
+      "verified": true
+    },
+    {
+      "time": "4:48",
+      "time_sec": 288,
+      "concept_ids": [
+        "equations"
+      ],
+      "label": "Historical context: Tartaglia, Cardano, and mathematical duels",
+      "note": "The cubic formula was kept secret for competitive advantage in 16th-century mathematical duels before Cardano published it.",
+      "verified": true
+    },
+    {
+      "time": "7:57",
+      "time_sec": 477,
+      "concept_ids": [
+        "quadratic_functions",
+        "equations"
+      ],
+      "label": "Completing the square: geometric derivation of the quadratic formula",
+      "note": "Geometric 'completing the square' is shown as a physical rearrangement of areas, deriving the quadratic formula from scratch.",
+      "verified": true
+    },
+    {
+      "time": "10:08",
+      "time_sec": 608,
+      "concept_ids": [
+        "quadratic_functions",
+        "derivatives",
+        "conics"
+      ],
+      "label": "Parabola shift method: second derivation via turning point",
+      "note": "Shifting the parabola's turning point to the y-axis via calculus (derivative = 0) gives the −b/2a shift, cleanly deriving the formula.",
+      "verified": true
+    },
+    {
+      "time": "13:50",
+      "time_sec": 830,
+      "concept_ids": [
+        "equations",
+        "derivatives",
+        "conics"
+      ],
+      "label": "Cubic inflection point shift — pre-processing reduces to depressed cubic",
+      "note": "Shifting the cubic's inflection point to the y-axis using −b/3a eliminates the quadratic term, analogous to completing the square.",
+      "verified": true
+    },
+    {
+      "time": "17:04",
+      "time_sec": 1024,
+      "concept_ids": [
+        "equations",
+        "quadratic_functions"
+      ],
+      "label": "Cubic discriminant (q/2)² + (p/3)³ determines number of solutions",
+      "note": "The sign of the cubic discriminant plays the same role as b²−4ac for quadratics: positive → 1 solution, negative → 3 solutions.",
+      "verified": true
+    },
+    {
+      "time": "20:38",
+      "time_sec": 1238,
+      "concept_ids": [
+        "equations",
+        "quadratic_functions"
+      ],
+      "label": "Completing the cube: deriving Cardano's formula via u + v substitution",
+      "note": "Setting x = u + v and requiring uv = −p/3, the cubic reduces to a quadratic in u³, solved by the quadratic formula.",
+      "verified": true
+    },
+    {
+      "time": "23:34",
+      "time_sec": 1414,
+      "concept_ids": [
+        "complex_numbers",
+        "equations"
+      ],
+      "label": "Casus irreducibilis: three real roots require complex intermediate steps",
+      "note": "When the discriminant is negative (three real roots), Cardano's formula outputs complex numbers even though all solutions are real.",
+      "verified": true
+    },
+    {
+      "time": "27:02",
+      "time_sec": 1622,
+      "concept_ids": [
+        "complex_numbers",
+        "sine",
+        "cosine"
+      ],
+      "label": "Polar form and cube roots of complex numbers give all three solutions",
+      "note": "Writing complex cube-root expressions in polar form (r, θ) and dividing the angle by 3 recovers all three real solutions via trigonometry.",
+      "verified": true
+    },
+    {
+      "time": "32:02",
+      "time_sec": 1922,
+      "concept_ids": [
+        "equations",
+        "conics"
+      ],
+      "label": "Fun facts: tangent lines, equilateral triangles, and Marden's theorem",
+      "note": "Three geometric curiosities about cubics: tangent-line collinearity, equilateral triangle rotation to zeros, and Marden's theorem linking derivative zeros to an inscribed ellipse.",
+      "verified": true
+    },
+    {
+      "time": "34:28",
+      "time_sec": 2068,
+      "concept_ids": [
+        "equations"
+      ],
+      "label": "Ferrari's quartic solution and the limits of radical formulas",
+      "note": "Ferrari's method solves the quartic; no quintic formula exists (proved by Galois theory) — there is no general solution in radicals beyond degree 4.",
+      "verified": true
+    }
+  ],
+  "cross_domain": [
+    {
+      "concept": "complex_numbers",
+      "domain": "history_of_mathematics",
+      "description": "Casus irreducibilis forced Bombelli to invent complex numbers in the 16th century",
+      "note": "The need to express real cubic roots through complex intermediates was the historical origin of complex number theory."
+    },
+    {
+      "concept": "equations",
+      "domain": "history_of_mathematics",
+      "description": "16th-century mathematical duels: cubic formula kept secret as competitive weapon",
+      "note": "Tartaglia and del Ferro withheld the cubic formula for use in public mathematical competitions before Cardano published it."
+    }
+  ],
+  "key_arguments": [
+    "Any cubic ax³+bx²+cx+d can be reduced to the depressed form x³+px+q=0 by shifting x → x−b/3a (analogous to completing the square for quadratics).",
+    "The cubic discriminant Δ = (q/2)²+(p/3)³ determines the number of real solutions: Δ>0 → 1, Δ=0 → 2, Δ<0 → 3.",
+    "Cardano's formula solves the depressed cubic via x=u+v with uv=−p/3, reducing the problem to a quadratic in u³.",
+    "The casus irreducibilis: when Δ<0 (three real roots), the formula necessarily passes through complex numbers — this paradox historically drove the invention of complex numbers.",
+    "Complex cube roots in polar form (r·e^{iθ}) yield all three real solutions via cos(θ/3+2πk/3); Galois theory proves no purely real radical formula exists for this case."
+  ],
+  "source_notes": "Subtitles via DownSub (SRT, English). 379 segments. Ontology: k12_math_ontology.json. New concept added: complex_numbers.",
+  "verified": true
+}

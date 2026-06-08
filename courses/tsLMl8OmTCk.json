@@ -1,0 +1,230 @@
+{
+  "video_id": "tsLMl8OmTCk",
+  "url": "https://www.youtube.com/watch?v=tsLMl8OmTCk",
+  "title": "【漫士】什么？数学证明里也能降维打击？",
+  "channel": "漫士沉思录 Meditation Math",
+  "language": "zh-CN",
+  "duration_sec": 1278,
+  "published": "2024-07-01",
+  "ontology_ref": "k12_math_ontology.json",
+  "meta_concepts_touched": [
+    "transformation",
+    "relation",
+    "structure"
+  ],
+  "concept_path": [
+    {
+      "order": 1,
+      "concept_id": "transformations",
+      "time_sec": 0
+    },
+    {
+      "order": 2,
+      "concept_id": "spatial_reasoning",
+      "time_sec": 0
+    },
+    {
+      "order": 3,
+      "concept_id": "coordinate_geometry",
+      "time_sec": 93
+    },
+    {
+      "order": 4,
+      "concept_id": "conics",
+      "time_sec": 93
+    },
+    {
+      "order": 5,
+      "concept_id": "triangles",
+      "time_sec": 355
+    },
+    {
+      "order": 6,
+      "concept_id": "ratio",
+      "time_sec": 355
+    },
+    {
+      "order": 7,
+      "concept_id": "sine",
+      "time_sec": 508
+    },
+    {
+      "order": 8,
+      "concept_id": "cosine",
+      "time_sec": 508
+    },
+    {
+      "order": 9,
+      "concept_id": "integrals",
+      "time_sec": 862
+    },
+    {
+      "order": 10,
+      "concept_id": "normal_distribution",
+      "time_sec": 862
+    }
+  ],
+  "timestamps": [
+    {
+      "time": "0:00",
+      "time_sec": 0,
+      "concept_ids": [
+        "transformations",
+        "spatial_reasoning"
+      ],
+      "label": "菱形拼圖問題：三種拼圖數量必然相等",
+      "note": "開場用菱形鋪滿六邊形的拼圖問題引入「升維打擊」——將平面問題解讀為三維立方體的投影，三面數量相等立見。",
+      "verified": true
+    },
+    {
+      "time": "1:33",
+      "time_sec": 93,
+      "concept_ids": [
+        "coordinate_geometry",
+        "conics",
+        "spatial_reasoning"
+      ],
+      "label": "三圓外公切線交點共線：三維球切面証明",
+      "note": "三個圓的外公切線交點共線，通過構造三個球的公切面（兩平面之交線）在三維中一步得證。",
+      "verified": true
+    },
+    {
+      "time": "3:37",
+      "time_sec": 217,
+      "concept_ids": [
+        "coordinate_geometry",
+        "spatial_reasoning"
+      ],
+      "label": "蒙日定理：三球面的公共交點投影証明",
+      "note": "三圓公共弦共點（蒙日定理）由三球面公共交點投影回平面得出，三維交集降維即是結論。",
+      "verified": true
+    },
+    {
+      "time": "5:55",
+      "time_sec": 355,
+      "concept_ids": [
+        "triangles",
+        "coordinate_geometry",
+        "ratio"
+      ],
+      "label": "梅涅勞斯定理：三維垂線相似比証明",
+      "note": "過截線做斜面，三角形頂點作垂線交斜面，利用「8字三角形」相似比連乘約分為 1，梅涅勞斯定理得證。",
+      "verified": true
+    },
+    {
+      "time": "7:12",
+      "time_sec": 432,
+      "concept_ids": [
+        "coordinate_geometry",
+        "spatial_reasoning"
+      ],
+      "label": "笛沙格定理：三棱錐投影到平面",
+      "note": "兩三角形對應頂點共點（射影視角）等同於三棱錐截面，對應邊延長線的交點自然共線於兩平面交線。",
+      "verified": true
+    },
+    {
+      "time": "8:28",
+      "time_sec": 508,
+      "concept_ids": [
+        "conics",
+        "sine",
+        "cosine"
+      ],
+      "label": "丹德林雙球法：斜切圓錐得橢圓的優雅証明",
+      "note": "在圓錐中塞入上下兩個球，利用球外切線等長，將曲線上任意點到兩切點的距離之和化為兩母線圓之間的定長差，証明為橢圓。",
+      "verified": true
+    },
+    {
+      "time": "10:20",
+      "time_sec": 620,
+      "concept_ids": [
+        "triangles",
+        "transformations",
+        "conics"
+      ],
+      "label": "折紙三棱錐：中位線上六點共圓及垂心",
+      "note": "沿三中位線折疊平面三角形成三棱錐，六等距點自然在圓錐底面共圓，圓心展開後對應垂心 H。",
+      "verified": true
+    },
+    {
+      "time": "12:26",
+      "time_sec": 746,
+      "concept_ids": [
+        "coordinate_geometry",
+        "conics"
+      ],
+      "label": "Lifting 抬升法：四點共圓 ↔ 三維四點共面",
+      "note": "將平面點 (x,y) 抬升至旋轉拋物面 z=x²+y²，四點共圓等價於三維共面，體積行列式為零即可判定。",
+      "verified": true
+    },
+    {
+      "time": "13:17",
+      "time_sec": 797,
+      "concept_ids": [
+        "coordinate_geometry",
+        "transformations"
+      ],
+      "label": "Lifting + 下凸包 = Voronoi 圖",
+      "note": "所有平面點抬升到旋轉拋物面後求下凸包，投影回平面即得 Voronoi 圖——每個區域代表距某點最近的位置集合。",
+      "verified": true
+    },
+    {
+      "time": "14:22",
+      "time_sec": 862,
+      "concept_ids": [
+        "integrals",
+        "normal_distribution",
+        "sine",
+        "cosine"
+      ],
+      "label": "高斯積分 ∫e^{-x²}dx = √π：旋轉到二維再極坐標",
+      "note": "將一維積分 I 平方轉為二維曲面體積，利用旋轉對稱性在極坐標中化為洋葱圓環積分，得 I²=π，故 I=√π。",
+      "verified": true
+    },
+    {
+      "time": "18:52",
+      "time_sec": 1132,
+      "concept_ids": [
+        "integrals",
+        "sine"
+      ],
+      "label": "狄利克雷積分 ∫sin(x)/x = π/2：引入額外維度",
+      "note": "將 1/x 改寫為 e^{-xy} 對 y 的積分，升維後交換積分順序，化為易算的 1/(y²+1) 積分得 π/2。",
+      "verified": true
+    },
+    {
+      "time": "19:22",
+      "time_sec": 1162,
+      "concept_ids": [
+        "sine",
+        "coordinate_geometry"
+      ],
+      "label": "三點確定正弦曲線：捲紙筒截橢圓再展開",
+      "note": "將紙捲成圓筒，三點確定平面截出橢圓，展開後橢圓變為正弦曲線，優雅找到過三點的唯一正弦曲線。",
+      "verified": true
+    }
+  ],
+  "cross_domain": [
+    {
+      "concept": "transformations",
+      "domain": "computer_science",
+      "description": "Lifting to paraboloid + lower convex hull = Voronoi diagram algorithm",
+      "note": "The standard computational geometry algorithm for Voronoi diagrams uses 3D lifting and convex hull."
+    },
+    {
+      "concept": "integrals",
+      "domain": "physics",
+      "description": "Gaussian integral ∫e^{-x²}dx = √π is the normalization constant of the normal distribution",
+      "note": "Gauss's proof by rotating to 2D and using polar coordinates is the canonical derivation."
+    }
+  ],
+  "key_arguments": [
+    "升維打擊的核心思路：將平面中需要技巧的幾何命題，重新解讀為三維空間中顯而易見的結構（交線、投影、截面），再投影回二維。",
+    "丹德林雙球法是升維証明的教科書範例：球外切線等長這一基本事實，在三維中自動完成了橢圓定義的驗證。",
+    "Lifting 抬升法：平面點 (x,y) 映射到旋轉拋物面 z=x²+y²，將四點共圓判定問題轉化為三維共面（行列式）問題。",
+    "高斯積分的升維証明：I² = ∬e^{-(x²+y²)}dxdy，旋轉對稱性使極坐標積分化為洋葱圓環求和，π 自然出現。",
+    "捲紙筒法：將平面上三點「捲」入圓柱，截平面→橢圓，展開→正弦曲線，幾何直觀直接給出過三點的唯一正弦曲線。"
+  ],
+  "source_notes": "Subtitles via DownSub (SRT, Chinese). 589 segments. Ontology: k12_math_ontology.json.",
+  "verified": true
+}
