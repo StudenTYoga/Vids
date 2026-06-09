@@ -212,7 +212,7 @@ function ConceptNode({ data }) {
         data.isHighlighted && data.hlMode === 'related'  ? 'concept-node--hl-related'  : '',
         data.isHighlighted && data.hlMode === 'course'   ? 'concept-node--hl-course'   : '',
         data.isUnderstood                                ? 'concept-node--understood'  : '',
-        data.isBorder                                    ? 'concept-node--border'      : '',
+        data.isBorder && !data.isHighlighted             ? 'concept-node--border'      : '',
       ].filter(Boolean).join(' ')}
       style={{ '--color': data.color }}
     >
@@ -526,14 +526,14 @@ export default function MathOntologyBoard() {
           ...n,
           data: {
             ...n.data,
-            isBorder: showKnowledgeBorder &&
+            isBorder: showKnowledgeBorder && !hlMode &&
               !understood.has(n.id) &&
               (prereqMap[n.id] ?? []).every((p) => understood.has(p)),
           },
         }
       )
     );
-  }, [showKnowledgeBorder, understood, prereqMap, setNodes]);
+  }, [showKnowledgeBorder, hlMode, understood, prereqMap, setNodes]);
 
   // ── Toolbar toggle ──
   const handleToggle = useCallback((e) => {
