@@ -423,9 +423,9 @@ function buildGraph(data, showRelated, understoodSet, highlightedSet, hlMode = n
           id:        `pre::${pid}::${c.id}`,
           source:    pid,
           target:    c.id,
-          type:      'smoothstep',
-          markerEnd: { type: MarkerType.ArrowClosed, color: '#64748b', width: 14, height: 14 },
-          style:     { stroke: '#64748b', strokeWidth: 1.5 },
+          type:      'straight',
+          markerEnd: { type: MarkerType.ArrowClosed, color: 'rgba(148,163,184,0.6)', width: 10, height: 10 },
+          style:     { stroke: 'rgba(148,163,184,0.35)', strokeWidth: 1 },
         });
       });
 
